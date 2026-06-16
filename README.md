@@ -367,3 +367,38 @@ src
             └── MenuItemRepositoryTest.java
 ```
 
+# Possível modelagem dos dados
+
+```text
+TipoUsuario
+│
+├── id
+└── nome
+
+Usuario
+│
+├── id
+├── nome
+├── email
+└── userType
+
+Restaurante
+│
+├── id
+├── nome
+├── endereço
+├── tipoCozinha
+├── horário
+└── dono(Usuario)
+
+MenuItem
+│
+├── id
+├── nome
+├── descrição
+├── preço
+├── somenteLocal
+├── foto(url para foto)
+└── restaurante
+
+```
