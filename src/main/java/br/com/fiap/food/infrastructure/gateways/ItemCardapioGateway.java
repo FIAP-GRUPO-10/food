@@ -1,6 +1,7 @@
 package br.com.fiap.food.infrastructure.gateways;
 
 import br.com.fiap.food.application.gateways.ItemCardapioGatewaySpec;
+import br.com.fiap.food.infrastructure.persistence.repositories.ItemCardapioRepository;
 import br.com.fiap.food.infrastructure.presentation.request.ItemCardapioRequest;
 import br.com.fiap.food.infrastructure.presentation.response.ItemCardapioResponse;
 
@@ -8,9 +9,16 @@ import java.util.List;
 
 public class ItemCardapioGateway  implements ItemCardapioGatewaySpec {
 
+    private final ItemCardapioRepository itemCardapioRepository;
+
+    public ItemCardapioGateway(ItemCardapioRepository itemCardapioRepository) {
+        this.itemCardapioRepository = itemCardapioRepository;
+    }
+
     @Override
     public ItemCardapioResponse criar(ItemCardapioRequest request) {
-        return null;
+
+        return  null ;// itemCardapioRepository.save();
     }
 
     @Override

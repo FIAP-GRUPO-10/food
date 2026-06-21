@@ -8,6 +8,7 @@ import java.util.List;
 
 @Service
 public class ListarUsuarioUserCase {
+
     private final UsuarioGatewaySpec usuarioGatewaySpec;
 
     public ListarUsuarioUserCase(UsuarioGatewaySpec usuarioGatewaySpec) {
