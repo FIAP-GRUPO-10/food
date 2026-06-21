@@ -8,13 +8,9 @@ import java.util.List;
 public interface ItemCardapioGatewaySpec {
 
    ItemCardapioResponse criar(ItemCardapioRequest request);
-
    ItemCardapioResponse buscarPorId(Long id);
-
     List<ItemCardapioResponse> listarTodos();
-
     ItemCardapioResponse atualizar(Long id, ItemCardapioRequest request);
-
     void deletar(Long id);
 }
 
