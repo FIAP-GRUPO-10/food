@@ -2,7 +2,7 @@
 
 ## 👥 Integrantes
 
-* **Integrante 1:** ______________________
+* **Integrante 1:** Sandoval
 * **Integrante 2:** ______________________
 * **Integrante 3:** ______________________
 
