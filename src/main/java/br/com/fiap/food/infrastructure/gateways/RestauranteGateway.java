@@ -28,7 +28,7 @@ public class RestauranteGateway implements RestauranteGatewaySpec {
         this.restauranteMapper = restauranteMapper;
     }
 
-    @Autowired
+    @Override
     public RestauranteResponse criar(RestauranteRequest request) {
         Usuario dono = usuarioRepository.findById(request.donoId())
                 .orElseThrow(() -> new RuntimeException("Dono não encontrado"));
@@ -40,19 +40,19 @@ public class RestauranteGateway implements RestauranteGatewaySpec {
         return restauranteMapper.toResponse(salvo);
     }
 
-    @Autowired
+    @Override
     public RestauranteResponse buscarPorId(Long id) {
         Restaurante restaurante = restauranteRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Restaurante não encontrado"));
         return restauranteMapper.toResponse(restaurante);
     }
 
-    @Autowired
+    @Override
     public List<RestauranteResponse> listarTodos() {
         return restauranteMapper.toResponseList(restauranteRepository.findAll());
     }
 
-    @Autowired
+    @Override
     public RestauranteResponse atualizar(Long id, RestauranteRequest request) {
         Restaurante restaurante = restauranteRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Restaurante não encontrado"));
@@ -70,7 +70,7 @@ public class RestauranteGateway implements RestauranteGatewaySpec {
         return restauranteMapper.toResponse(atualizado);
     }
 
-    @Autowired
+    @Override
     public void deletar(Long id) {
         restauranteRepository.deleteById(id);
     }

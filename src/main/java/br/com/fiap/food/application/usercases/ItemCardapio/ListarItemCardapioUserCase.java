@@ -1,8 +1,10 @@
 package br.com.fiap.food.application.usercases.ItemCardapio;
 
 import br.com.fiap.food.application.gateways.ItemCardapioGatewaySpec;
-import br.com.fiap.food.infrastructure.gateways.ItemCardapioGateway;
+import br.com.fiap.food.infrastructure.presentation.response.ItemCardapioResponse;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ListarItemCardapioUserCase {
@@ -11,5 +13,9 @@ public class ListarItemCardapioUserCase {
 
     public ListarItemCardapioUserCase(ItemCardapioGatewaySpec itemCardapioGatewaySpec) {
         this.itemCardapioGatewaySpec = itemCardapioGatewaySpec;
+    }
+
+    public List<ItemCardapioResponse> listarTodos() {
+        return this.itemCardapioGatewaySpec.listarTodos();
     }
 }

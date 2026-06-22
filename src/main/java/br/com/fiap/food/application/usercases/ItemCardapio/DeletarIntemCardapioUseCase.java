@@ -11,4 +11,8 @@ public class DeletarIntemCardapioUseCase {
     public DeletarIntemCardapioUseCase(ItemCardapioGatewaySpec itemCardapioGatewaySpec) {
         this.itemCardapioGatewaySpec = itemCardapioGatewaySpec;
     }
+
+    public void deletar(Long id) {
+        this.itemCardapioGatewaySpec.deletar(id);
+    }
 }

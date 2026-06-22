@@ -4,9 +4,11 @@ import br.com.fiap.food.application.gateways.ItemCardapioGatewaySpec;
 import br.com.fiap.food.infrastructure.persistence.repositories.ItemCardapioRepository;
 import br.com.fiap.food.infrastructure.presentation.request.ItemCardapioRequest;
 import br.com.fiap.food.infrastructure.presentation.response.ItemCardapioResponse;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ItemCardapioGateway  implements ItemCardapioGatewaySpec {
 
     private final ItemCardapioRepository itemCardapioRepository;
@@ -38,6 +40,6 @@ public class ItemCardapioGateway  implements ItemCardapioGatewaySpec {
 
     @Override
     public void deletar(Long id) {
-
+        itemCardapioRepository.deleteById(id);
     }
 }
