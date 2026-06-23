@@ -3,7 +3,7 @@
 ## 👥 Integrantes
 
 * **Integrante 1:** Sandoval Bento
-* **Integrante 2:** ______________________
+* **Integrante 2:** Thiago Vanzele
 * **Integrante 3:** ______________________
 
 ---
