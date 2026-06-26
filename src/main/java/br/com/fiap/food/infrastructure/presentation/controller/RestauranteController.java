@@ -1,8 +1,8 @@
 package br.com.fiap.food.infrastructure.presentation.controller;
 
 import br.com.fiap.food.infrastructure.gateways.RestauranteGateway;
-import br.com.fiap.food.infrastructure.presentation.request.RestauranteRequest;
-import br.com.fiap.food.infrastructure.presentation.response.RestauranteResponse;
+import br.com.fiap.food.modules.restaurante.infrastructure.controller.dto.request.RestauranteRequest;
+import br.com.fiap.food.modules.restaurante.infrastructure.controller.dto.response.RestauranteResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

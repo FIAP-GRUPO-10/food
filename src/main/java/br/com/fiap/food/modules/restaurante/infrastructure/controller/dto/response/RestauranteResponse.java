@@ -1,4 +1,6 @@
-package br.com.fiap.food.infrastructure.presentation.response;
+package br.com.fiap.food.modules.restaurante.infrastructure.controller.dto.response;
+
+import br.com.fiap.food.infrastructure.presentation.response.UsuarioResponse;
 
 import java.time.LocalDateTime;
 

@@ -1,13 +1,9 @@
-package br.com.fiap.food.infrastructure.persistence.entities;
+package br.com.fiap.food.modules.restaurante.infrastructure.persistence.entity;
 
+import br.com.fiap.food.infrastructure.persistence.entities.Usuario;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-
-import java.time.LocalDateTime;
+import lombok.*;
+import java.time.LocalTime;
 
 @Data
 @NoArgsConstructor
@@ -15,7 +11,7 @@ import java.time.LocalDateTime;
 @Builder
 @Entity
 @Table(name = "restaurante", schema = "fiap_food")
-public class Restaurante {
+public class RestauranteEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,11 +19,9 @@ public class Restaurante {
     private String nome;
     private String endereco;
     private String tipoCozinha;
-    @CreationTimestamp
-    private LocalDateTime horarioFuncionamento;
+    private LocalTime horarioFuncionamento;
 
     @ManyToOne
     @JoinColumn(name = "dono_id")
     private Usuario dono;
 }
-

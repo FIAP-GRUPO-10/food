@@ -1,31 +1,29 @@
 package br.com.fiap.food.infrastructure.gateways;
 
-import br.com.fiap.food.application.gateways.RestauranteGatewaySpec;
-import br.com.fiap.food.infrastructure.gateways.mappers.RestauranteMapper;
-import br.com.fiap.food.infrastructure.persistence.entities.Restaurante;
+import br.com.fiap.food.modules.restaurante.infrastructure.controller.mapper.RestauranteApiMapper;
+import br.com.fiap.food.modules.restaurante.domain.entity.Restaurante;
 import br.com.fiap.food.infrastructure.persistence.entities.Usuario;
-import br.com.fiap.food.infrastructure.persistence.repositories.RestauranteRepository;
+import br.com.fiap.food.modules.restaurante.infrastructure.persistence.repository.RestauranteRepository;
 import br.com.fiap.food.infrastructure.persistence.repositories.UsuarioRepository;
-import br.com.fiap.food.infrastructure.presentation.request.RestauranteRequest;
-import br.com.fiap.food.infrastructure.presentation.response.RestauranteResponse;
-import org.springframework.beans.factory.annotation.Autowired;
+import br.com.fiap.food.modules.restaurante.infrastructure.controller.dto.request.RestauranteRequest;
+import br.com.fiap.food.modules.restaurante.infrastructure.controller.dto.response.RestauranteResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class RestauranteGateway implements RestauranteGatewaySpec {
+public class RestauranteGateway implements br.com.fiap.food.modules.restaurante.domain.gateway.RestauranteGateway {
 
     private final RestauranteRepository restauranteRepository;
     private final UsuarioRepository usuarioRepository;
-    private final RestauranteMapper restauranteMapper;
+    private final RestauranteApiMapper restauranteApiMapper;
 
     public RestauranteGateway(RestauranteRepository restauranteRepository,
                               UsuarioRepository usuarioRepository,
-                              RestauranteMapper restauranteMapper) {
+                              RestauranteApiMapper restauranteApiMapper) {
         this.restauranteRepository = restauranteRepository;
         this.usuarioRepository = usuarioRepository;
-        this.restauranteMapper = restauranteMapper;
+        this.restauranteApiMapper = restauranteApiMapper;
     }
 
     @Override
@@ -33,23 +31,23 @@ public class RestauranteGateway implements RestauranteGatewaySpec {
         Usuario dono = usuarioRepository.findById(request.donoId())
                 .orElseThrow(() -> new RuntimeException("Dono não encontrado"));
 
-        Restaurante restaurante = restauranteMapper.toEntity(request);
+        Restaurante restaurante = restauranteApiMapper.toDomain(request);
         restaurante.setDono(dono);
 
         Restaurante salvo = restauranteRepository.save(restaurante);
-        return restauranteMapper.toResponse(salvo);
+        return restauranteApiMapper.toResponse(salvo);
     }
 
     @Override
     public RestauranteResponse buscarPorId(Long id) {
         Restaurante restaurante = restauranteRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Restaurante não encontrado"));
-        return restauranteMapper.toResponse(restaurante);
+        return restauranteApiMapper.toResponse(restaurante);
     }
 
     @Override
     public List<RestauranteResponse> listarTodos() {
-        return restauranteMapper.toResponseList(restauranteRepository.findAll());
+        return restauranteApiMapper.toResponseList(restauranteRepository.findAll());
     }
 
     @Override
@@ -67,7 +65,7 @@ public class RestauranteGateway implements RestauranteGatewaySpec {
         restaurante.setDono(dono);
 
         Restaurante atualizado = restauranteRepository.save(restaurante);
-        return restauranteMapper.toResponse(atualizado);
+        return restauranteApiMapper.toResponse(atualizado);
     }
 
     @Override

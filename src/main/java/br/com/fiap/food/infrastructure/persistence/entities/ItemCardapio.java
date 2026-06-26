@@ -1,5 +1,6 @@
 package br.com.fiap.food.infrastructure.persistence.entities;
 
+import br.com.fiap.food.modules.restaurante.domain.entity.Restaurante;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

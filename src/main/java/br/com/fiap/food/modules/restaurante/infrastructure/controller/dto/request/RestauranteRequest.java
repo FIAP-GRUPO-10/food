@@ -1,4 +1,4 @@
-package br.com.fiap.food.infrastructure.presentation.request;
+package br.com.fiap.food.modules.restaurante.infrastructure.controller.dto.request;
 
 import java.time.LocalDateTime;
 
