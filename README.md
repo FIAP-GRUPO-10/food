@@ -199,23 +199,47 @@
 
 # 📁 Estrutura do Projeto
 
-## 📦 Shared
+## 📦 Estrutura Geral
+
+```text
+src
+└── main
+    └── java
+        └── br
+            └── com
+                └── restaurante
+                    │
+                    ├── RestaurantApplication.java
+                    │
+                    ├── modules
+                    │   ├── user
+                    │   ├── restaurant
+                    │   └── menuitem
+                    │
+                    └── shared
+                        ├── config
+                        ├── exception
+                        ├── security
+                        └── util
+```
+
+---
+
+# 📦 Shared
 
 ```text
 shared
 ├── config
-│   ├── OpenApiConfig.java
+│   ├── BeanConfig.java
 │   ├── JacksonConfig.java
-│   └── BeanConfig.java
+│   └── OpenApiConfig.java
 │
 ├── exception
 │   ├── BusinessException.java
 │   ├── ResourceNotFoundException.java
-│   ├── ValidationException.java
 │   └── GlobalExceptionHandler.java
 │
-├── mapper
-│   └── MapperConfig.java
+├── security
 │
 └── util
     ├── DateUtils.java
@@ -229,55 +253,54 @@ shared
 ```text
 user
 ├── domain
-│   └── User.java
+│   ├── entity
+│   │   └── User.java
+│   │
+│   ├── enums
+│   │   └── UserType.java
+│   │
+│   ├── gateway
+│   │   └── UserGateway.java
+│   │
+│   └── exception
+│       ├── UserAlreadyExistsException.java
+│       └── UserNotFoundException.java
 │
 ├── application
-│   ├── UserService.java
-│   └── UserMapper.java
-│
-├── infrastructure
-│   ├── controller
-│   │   └── UserController.java
+│   ├── dto
+│   │   ├── request
+│   │   │   ├── CreateUserRequest.java
+│   │   │   └── UpdateUserRequest.java
+│   │   │
+│   │   └── response
+│   │       └── UserResponse.java
 │   │
-│   └── repository
-│       └── UserRepository.java
-│
-└── dto
-    ├── request
-    │   ├── CreateUserDTO.java
-    │   └── UpdateUserDTO.java
-    │
-    └── response
-        └── UserResponseDTO.java
-```
-
----
-
-# 👥 UserType
-
-```text
-usertype
-├── domain
-│   └── UserType.java
-│
-├── application
-│   ├── UserTypeService.java
-│   └── UserTypeMapper.java
-│
-├── infrastructure
-│   ├── controller
-│   │   └── UserTypeController.java
+│   ├── mapper
+│   │   └── UserMapper.java
 │   │
-│   └── repository
-│       └── UserTypeRepository.java
+│   └── usecase
+│       ├── CreateUserUseCase.java
+│       ├── UpdateUserUseCase.java
+│       ├── DeleteUserUseCase.java
+│       ├── FindUserByIdUseCase.java
+│       └── FindAllUsersUseCase.java
 │
-└── dto
-    ├── request
-    │   ├── CreateUserTypeDTO.java
-    │   └── UpdateUserTypeDTO.java
+└── infrastructure
+    ├── controller
+    │   └── UserController.java
     │
-    └── response
-        └── UserTypeResponseDTO.java
+    ├── gateway
+    │   └── UserGatewayImpl.java
+    │
+    └── persistence
+        ├── entity
+        │   └── UserEntity.java
+        │
+        ├── mapper
+        │   └── UserEntityMapper.java
+        │
+        └── repository
+            └── UserRepository.java
 ```
 
 ---
@@ -287,26 +310,50 @@ usertype
 ```text
 restaurant
 ├── domain
-│   └── Restaurant.java
+│   ├── entity
+│   │   └── Restaurant.java
+│   │
+│   ├── gateway
+│   │   └── RestaurantGateway.java
+│   │
+│   └── exception
+│       └── RestaurantNotFoundException.java
 │
 ├── application
-│   ├── RestaurantService.java
-│   └── RestaurantMapper.java
-│
-├── infrastructure
-│   ├── controller
-│   │   └── RestaurantController.java
+│   ├── dto
+│   │   ├── request
+│   │   │   ├── CreateRestaurantRequest.java
+│   │   │   └── UpdateRestaurantRequest.java
+│   │   │
+│   │   └── response
+│   │       └── RestaurantResponse.java
 │   │
-│   └── repository
-│       └── RestaurantRepository.java
+│   ├── mapper
+│   │   └── RestaurantMapper.java
+│   │
+│   └── usecase
+│       ├── CreateRestaurantUseCase.java
+│       ├── UpdateRestaurantUseCase.java
+│       ├── DeleteRestaurantUseCase.java
+│       ├── FindRestaurantByIdUseCase.java
+│       └── FindAllRestaurantsUseCase.java
 │
-└── dto
-    ├── request
-    │   ├── CreateRestaurantDTO.java
-    │   └── UpdateRestaurantDTO.java
+└── infrastructure
+    ├── controller
+    │   └── RestaurantController.java
     │
-    └── response
-        └── RestaurantResponseDTO.java
+    ├── gateway
+    │   └── RestaurantGatewayImpl.java
+    │
+    └── persistence
+        ├── entity
+        │   └── RestaurantEntity.java
+        │
+        ├── mapper
+        │   └── RestaurantEntityMapper.java
+        │
+        └── repository
+            └── RestaurantRepository.java
 ```
 
 ---
@@ -316,26 +363,51 @@ restaurant
 ```text
 menuitem
 ├── domain
-│   └── MenuItem.java
+│   ├── entity
+│   │   └── MenuItem.java
+│   │
+│   ├── gateway
+│   │   └── MenuItemGateway.java
+│   │
+│   └── exception
+│       └── MenuItemNotFoundException.java
 │
 ├── application
-│   ├── MenuItemService.java
-│   └── MenuItemMapper.java
-│
-├── infrastructure
-│   ├── controller
-│   │   └── MenuItemController.java
+│   ├── dto
+│   │   ├── request
+│   │   │   ├── CreateMenuItemRequest.java
+│   │   │   └── UpdateMenuItemRequest.java
+│   │   │
+│   │   └── response
+│   │       └── MenuItemResponse.java
 │   │
-│   └── repository
-│       └── MenuItemRepository.java
+│   ├── mapper
+│   │   └── MenuItemMapper.java
+│   │
+│   └── usecase
+│       ├── CreateMenuItemUseCase.java
+│       ├── UpdateMenuItemUseCase.java
+│       ├── DeleteMenuItemUseCase.java
+│       ├── FindMenuItemByIdUseCase.java
+│       ├── FindMenuItemsByRestaurantUseCase.java
+│       └── FindAllMenuItemsUseCase.java
 │
-└── dto
-    ├── request
-    │   ├── CreateMenuItemDTO.java
-    │   └── UpdateMenuItemDTO.java
+└── infrastructure
+    ├── controller
+    │   └── MenuItemController.java
     │
-    └── response
-        └── MenuItemResponseDTO.java
+    ├── gateway
+    │   └── MenuItemGatewayImpl.java
+    │
+    └── persistence
+        ├── entity
+        │   └── MenuItemEntity.java
+        │
+        ├── mapper
+        │   └── MenuItemEntityMapper.java
+        │
+        └── repository
+            └── MenuItemRepository.java
 ```
 
 ---
@@ -346,59 +418,65 @@ menuitem
 src
 └── test
     └── java
-        ├── user
-        │   ├── UserServiceTest.java
-        │   ├── UserControllerTest.java
-        │   └── UserRepositoryTest.java
-        │
-        ├── usertype
-        │   ├── UserTypeServiceTest.java
-        │   ├── UserTypeControllerTest.java
-        │   └── UserTypeRepositoryTest.java
-        │
-        ├── restaurant
-        │   ├── RestaurantServiceTest.java
-        │   ├── RestaurantControllerTest.java
-        │   └── RestaurantRepositoryTest.java
-        │
-        └── menuitem
-            ├── MenuItemServiceTest.java
-            ├── MenuItemControllerTest.java
-            └── MenuItemRepositoryTest.java
+        └── br
+            └── com
+                └── restaurante
+                    ├── user
+                    │   ├── application
+                    │   ├── controller
+                    │   └── gateway
+                    │
+                    ├── restaurant
+                    │   ├── application
+                    │   ├── controller
+                    │   └── gateway
+                    │
+                    └── menuitem
+                        ├── application
+                        ├── controller
+                        └── gateway
 ```
 
-# Possível modelagem dos dados
+---
+
+# Modelo de Domínio
+
+## User
 
 ```text
-TipoUsuario
-│
-├── id
-└── nome
+id
+nome
+email
+userType (UserType)
+```
 
-Usuario
-│
-├── id
-├── nome
-├── email
-└── userType
+## UserType (Enum)
 
-Restaurante
-│
-├── id
-├── nome
-├── endereço
-├── tipoCozinha
-├── horário
-└── dono(Usuario)
+```java
+ADMIN
+OWNER
+CUSTOMER
+```
 
-MenuItem
-│
-├── id
-├── nome
-├── descrição
-├── preço
-├── somenteLocal
-├── foto(url para foto)
-└── restaurante
+## Restaurant
 
+```text
+id
+nome
+endereco
+tipoCozinha
+horario
+dono (User)
+```
+
+## MenuItem
+
+```text
+id
+nome
+descricao
+preco
+somenteLocal
+foto
+restaurant
 ```
