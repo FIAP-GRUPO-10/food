@@ -1,11 +1,11 @@
 package br.com.fiap.food.modules.restaurante.infrastructure.controller.dto.request;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public record RestauranteRequest(
         String nome,
         String endereco,
         String tipoCozinha,
-        LocalDateTime horarioFuncionamento,
+        LocalTime horarioFuncionamento,
         Long donoId
 ) {}

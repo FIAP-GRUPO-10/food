@@ -1,0 +1,12 @@
+package br.com.fiap.food.modules.usuario.infrastructure.persistence.mapper;
+
+import br.com.fiap.food.modules.usuario.domain.entity.Usuario;
+import br.com.fiap.food.modules.usuario.infrastructure.persistence.entity.UsuarioEntity;
+import org.mapstruct.Mapper;
+
+@Mapper(componentModel = "spring")
+public interface UsuarioEntityMapper {
+
+    UsuarioEntity toEntity(Usuario usuario);
+    Usuario toDomain(UsuarioEntity entity);
+}

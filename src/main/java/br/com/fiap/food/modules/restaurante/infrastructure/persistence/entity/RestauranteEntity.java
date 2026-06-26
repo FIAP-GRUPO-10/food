@@ -1,6 +1,6 @@
 package br.com.fiap.food.modules.restaurante.infrastructure.persistence.entity;
 
-import br.com.fiap.food.infrastructure.persistence.entities.Usuario;
+import br.com.fiap.food.modules.usuario.infrastructure.persistence.entity.UsuarioEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalTime;
@@ -10,7 +10,7 @@ import java.time.LocalTime;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "restaurante", schema = "fiap_food")
+@Table(name = "restaurante")
 public class RestauranteEntity {
 
     @Id
@@ -22,6 +22,6 @@ public class RestauranteEntity {
     private LocalTime horarioFuncionamento;
 
     @ManyToOne
-    @JoinColumn(name = "dono_id")
-    private Usuario dono;
+    @JoinColumn(name = "dono_id", referencedColumnName = "id")
+    private UsuarioEntity dono;
 }
