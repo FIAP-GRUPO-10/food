@@ -7,6 +7,7 @@ import lombok.*;
 @AllArgsConstructor
 public class ItemCardapio {
 
+    private Long id;
     private String nome;
     private String descricao;
     private double preco;

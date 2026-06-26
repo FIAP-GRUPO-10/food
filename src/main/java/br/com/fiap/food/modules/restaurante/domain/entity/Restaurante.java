@@ -12,6 +12,7 @@ import java.time.LocalTime;
 @AllArgsConstructor
 public class Restaurante {
 
+    private Long id;
     private String nome;
     private String endereco;
     private String tipoCozinha;
