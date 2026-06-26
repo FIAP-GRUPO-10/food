@@ -267,17 +267,6 @@ user
 │       └── UserNotFoundException.java
 │
 ├── application
-│   ├── dto
-│   │   ├── request
-│   │   │   ├── CreateUserRequest.java
-│   │   │   └── UpdateUserRequest.java
-│   │   │
-│   │   └── response
-│   │       └── UserResponse.java
-│   │
-│   ├── mapper
-│   │   └── UserMapper.java
-│   │
 │   └── usecase
 │       ├── CreateUserUseCase.java
 │       ├── UpdateUserUseCase.java
@@ -287,6 +276,17 @@ user
 │
 └── infrastructure
     ├── controller
+    │   ├── dto
+    │   │   ├── request
+    │   │   │   ├── CreateUserRequest.java
+    │   │   │   └── UpdateUserRequest.java
+    │   │   │
+    │   │   └── response
+    │   │       └── UserResponse.java
+    │   │
+    │   ├── mapper
+    │   │   └── UserMapper.java
+    │   │
     │   └── UserController.java
     │
     ├── gateway
@@ -297,7 +297,7 @@ user
         │   └── UserEntity.java
         │
         ├── mapper
-        │   └── UserEntityMapper.java
+        │   │── UserEntityMapper.java
         │
         └── repository
             └── UserRepository.java
@@ -320,17 +320,6 @@ restaurant
 │       └── RestaurantNotFoundException.java
 │
 ├── application
-│   ├── dto
-│   │   ├── request
-│   │   │   ├── CreateRestaurantRequest.java
-│   │   │   └── UpdateRestaurantRequest.java
-│   │   │
-│   │   └── response
-│   │       └── RestaurantResponse.java
-│   │
-│   ├── mapper
-│   │   └── RestaurantMapper.java
-│   │
 │   └── usecase
 │       ├── CreateRestaurantUseCase.java
 │       ├── UpdateRestaurantUseCase.java
@@ -340,6 +329,17 @@ restaurant
 │
 └── infrastructure
     ├── controller
+    │   ├── dto
+    │   │   ├── request
+    │   │   │   ├── CreateRestaurantRequest.java
+    │   │   │   └── UpdateRestaurantRequest.java
+    │   │   │
+    │   │   └── response
+    │   │       └── RestaurantResponse.java
+    │   │
+    │   ├── mapper
+    │   │   └── RestaurantMapper.java
+    │   │
     │   └── RestaurantController.java
     │
     ├── gateway
@@ -373,17 +373,6 @@ menuitem
 │       └── MenuItemNotFoundException.java
 │
 ├── application
-│   ├── dto
-│   │   ├── request
-│   │   │   ├── CreateMenuItemRequest.java
-│   │   │   └── UpdateMenuItemRequest.java
-│   │   │
-│   │   └── response
-│   │       └── MenuItemResponse.java
-│   │
-│   ├── mapper
-│   │   └── MenuItemMapper.java
-│   │
 │   └── usecase
 │       ├── CreateMenuItemUseCase.java
 │       ├── UpdateMenuItemUseCase.java
@@ -394,6 +383,17 @@ menuitem
 │
 └── infrastructure
     ├── controller
+    │   ├── dto
+    │   │   ├── request
+    │   │   │   ├── CreateMenuItemRequest.java
+    │   │   │   └── UpdateMenuItemRequest.java
+    │   │   │
+    │   │   └── response
+    │   │       └── MenuItemResponse.java
+    │   │
+    │   ├── mapper
+    │   │   └── MenuItemMapper.java
+    │   │
     │   └── MenuItemController.java
     │
     ├── gateway
@@ -423,23 +423,85 @@ src
                 └── restaurante
                     ├── user
                     │   ├── application
-                    │   ├── controller
-                    │   └── gateway
+                    │   ├── infrastructure
+                    │   │   ├── controller
+                    │   │   └── gateway
                     │
                     ├── restaurant
                     │   ├── application
-                    │   ├── controller
-                    │   └── gateway
+                    │   ├── infrastructure
+                    │   │   ├── controller
+                    │   │   └── gateway
                     │
                     └── menuitem
                         ├── application
-                        ├── controller
-                        └── gateway
+                        ├── infrastructure
+                        │   ├── controller
+                        │   └── gateway
 ```
 
 ---
 
-# Modelo de Domínio
+# 🏛️ Arquitetura das Camadas
+
+```text
+Controller
+    │
+    ▼
+Request DTO
+    │
+    ▼
+Mapper
+    │
+    ▼
+Domain Entity
+    │
+    ▼
+Use Case
+    │
+    ▼
+Gateway (Interface)
+    │
+    ▼
+GatewayImpl
+    │
+    ▼
+Repository
+    │
+    ▼
+Database
+```
+
+Fluxo de retorno:
+
+```text
+Database
+    │
+    ▼
+Repository
+    │
+    ▼
+GatewayImpl
+    │
+    ▼
+Domain Entity
+    │
+    ▼
+Use Case
+    │
+    ▼
+Mapper
+    │
+    ▼
+Response DTO
+    │
+    ▼
+Controller
+```
+
+---
+
+# 📦 Modelo de Domínio
 
 ## User
 
@@ -450,7 +512,7 @@ email
 userType (UserType)
 ```
 
-## UserType (Enum)
+## UserType
 
 ```java
 ADMIN
@@ -465,7 +527,7 @@ id
 nome
 endereco
 tipoCozinha
-horario
+horarioFuncionamento
 dono (User)
 ```
 
@@ -478,5 +540,5 @@ descricao
 preco
 somenteLocal
 foto
-restaurant
+restaurant (Restaurant)
 ```
