@@ -39,6 +39,14 @@ public class UsuarioGatewayImpl implements UsuarioGateway {
     }
 
     @Override
+    public Usuario atualizar(Long id, Usuario usuario) {
+        usuario.setId(id);
+        UsuarioEntity entity = mapper.toEntity(usuario);
+        UsuarioEntity atualizado = repository.save(entity);
+        return mapper.toDomain(atualizado);
+    }
+
+    @Override
     public void deletar(Long id) {
 
     }
