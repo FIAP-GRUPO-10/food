@@ -14,20 +14,20 @@
 
 ### Tipo de Usuário
 
-* [ ] Criar entidade `UserType`
-* [ ] Criar Repository
-* [ ] Criar Service
-* [ ] Criar Controller
-* [ ] Criar DTOs
-* [ ] Implementar CRUD completo
+* [X] Criar entidade `TipoUsuario`
+* [X] Criar Repository
+* [X] Criar Service
+* [X] Criar Controller
+* [X] Criar DTOs
+* [X] Implementar CRUD completo
 * [ ] Criar validações
 * [ ] Criar tratamento de exceções
 
 ### Associação com Usuário
 
-* [ ] Relacionar usuário ao tipo de usuário
-* [ ] Atualizar entidade `User`
-* [ ] Atualizar DTOs
+* [X] Relacionar usuário ao tipo de usuário
+* [X] Atualizar entidade `Usuario`
+* [X] Atualizar DTOs
 * [ ] Atualizar regras de cadastro
 
 ### Testes
