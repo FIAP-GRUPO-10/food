@@ -1,6 +1,6 @@
 package br.com.fiap.food.modules.usuario.domain.enums;
 
-public enum TipoUsuario {
+public enum TipoUsuarioEnum {
 
     CLIENTE, DONO;
 }

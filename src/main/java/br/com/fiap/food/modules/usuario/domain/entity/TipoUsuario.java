@@ -5,12 +5,10 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class Usuario {
-
+public class TipoUsuario {
     private Long id;
     private String nome;
-    private String email;
-    private TipoUsuario tipoUsuario;
+    private String observacao;
 
     public void setId(Long id) {
         this.id = id;

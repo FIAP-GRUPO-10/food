@@ -9,6 +9,7 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface RestauranteApiMapper {
 
+    @Mapping(target = "id", ignore = true)
     @Mapping(target = "dono.id", source = "donoId")
     Restaurante toDomain(RestauranteRequest request);
     RestauranteResponse toResponse(Restaurante restaurante);

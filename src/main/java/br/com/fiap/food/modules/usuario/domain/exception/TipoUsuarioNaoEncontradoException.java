@@ -2,13 +2,13 @@ package br.com.fiap.food.modules.usuario.domain.exception;
 
 import org.springframework.http.HttpStatus;
 
-public class UsuarioNaoEncontradoException extends RuntimeException {
+public class TipoUsuarioNaoEncontradoException extends RuntimeException {
 
     private final Long id;
     private final HttpStatus status = HttpStatus.NOT_FOUND;
 
-    public UsuarioNaoEncontradoException(Long id) {
-        super("Usuário não encontrado com id: " + id);
+    public TipoUsuarioNaoEncontradoException(Long id) {
+        super("Tipo de usuário não encontrado com id: " + id);
         this.id = id;
     }
 

@@ -1,6 +1,6 @@
 package br.com.fiap.food.modules.usuario.infrastructure.controller;
 
-import br.com.fiap.food.modules.usuario.application.usecase.*;
+import br.com.fiap.food.modules.usuario.application.usecase.usuario.*;
 import br.com.fiap.food.modules.usuario.domain.entity.Usuario;
 import br.com.fiap.food.modules.usuario.infrastructure.controller.dto.request.UsuarioRequest;
 import br.com.fiap.food.modules.usuario.infrastructure.controller.dto.response.UsuarioResponse;
@@ -36,12 +36,6 @@ public class UsuarioController {
         this.deletarUsuarioUseCase = deletarUsuarioUseCase;
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<UsuarioResponse> buscarPorId(@PathVariable Long id) {
-        Usuario usuario = buscarUsuarioPorIdUseCase.execute(id);
-        UsuarioResponse response = mapper.toResponse(usuario);
-        return ResponseEntity.ok(response);
-    }
 
     @PostMapping
     public ResponseEntity<UsuarioResponse> criarUsuario(@RequestBody UsuarioRequest request) {
@@ -50,6 +44,14 @@ public class UsuarioController {
         UsuarioResponse response = mapper.toResponse(criado);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<UsuarioResponse> buscarPorId(@PathVariable Long id) {
+        Usuario usuario = buscarUsuarioPorIdUseCase.execute(id);
+        UsuarioResponse response = mapper.toResponse(usuario);
+        return ResponseEntity.ok(response);
+    }
+
 
     @GetMapping
     public ResponseEntity<List<UsuarioResponse>> listarTodos() {

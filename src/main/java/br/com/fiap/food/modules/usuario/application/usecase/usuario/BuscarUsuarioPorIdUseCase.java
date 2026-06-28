@@ -1,4 +1,4 @@
-package br.com.fiap.food.modules.usuario.application.usecase;
+package br.com.fiap.food.modules.usuario.application.usecase.usuario;
 
 import br.com.fiap.food.modules.usuario.domain.entity.Usuario;
 import br.com.fiap.food.modules.usuario.domain.exception.UsuarioNaoEncontradoException;
@@ -14,6 +14,6 @@ public class BuscarUsuarioPorIdUseCase {
 
     public Usuario execute(Long id) {
         return gateway.buscarPorId(id)
-                .orElseThrow(() -> new UsuarioNaoEncontradoException("Usuário não encontrado"));
+                .orElseThrow(() -> new UsuarioNaoEncontradoException(id));
     }
 }

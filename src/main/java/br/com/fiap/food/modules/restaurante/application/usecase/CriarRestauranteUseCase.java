@@ -1,6 +1,7 @@
 package br.com.fiap.food.modules.restaurante.application.usecase;
 
 import br.com.fiap.food.modules.restaurante.domain.entity.Restaurante;
+import br.com.fiap.food.modules.restaurante.domain.exception.RestauranteNaoEncontradoException;
 import br.com.fiap.food.modules.restaurante.domain.gateway.RestauranteGateway;
 import br.com.fiap.food.modules.usuario.domain.entity.Usuario;
 import br.com.fiap.food.modules.usuario.domain.exception.UsuarioNaoEncontradoException;
@@ -21,7 +22,7 @@ public class CriarRestauranteUseCase {
 
     public Restaurante execute(Restaurante restaurante) {
         Usuario usuario = usuarioGateway.buscarPorId(restaurante.getDono().getId())
-                .orElseThrow(() -> new UsuarioNaoEncontradoException("Usuario não encontrado"));
+                .orElseThrow(() -> new RestauranteNaoEncontradoException("Restaurante não encontrado"));
 
         restaurante.setDono(usuario);
         return restauranteGateway.salvar(restaurante);

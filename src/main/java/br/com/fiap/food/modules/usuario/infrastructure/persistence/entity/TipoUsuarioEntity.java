@@ -1,6 +1,5 @@
 package br.com.fiap.food.modules.usuario.infrastructure.persistence.entity;
 
-import br.com.fiap.food.modules.usuario.domain.entity.TipoUsuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,15 +11,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "usuario")
-public class UsuarioEntity {
+@Table(name = "tipo_usuario")
+public class TipoUsuarioEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nome;
-    private String email;
 
-    @ManyToOne
-    @JoinColumn(name = "tipo_usuario_id", nullable = false)
-    private TipoUsuarioEntity tipoUsuario;
+    @Column(name = "nome", nullable = false)
+    private String nome;
+
+    @Column(name = "observacao")
+    private String observacao;
 }

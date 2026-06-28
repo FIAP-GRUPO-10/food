@@ -1,4 +1,4 @@
-package br.com.fiap.food.modules.usuario.application.usecase;
+package br.com.fiap.food.modules.usuario.application.usecase.usuario;
 
 import br.com.fiap.food.modules.usuario.domain.entity.Usuario;
 import br.com.fiap.food.modules.usuario.domain.gateway.UsuarioGateway;
