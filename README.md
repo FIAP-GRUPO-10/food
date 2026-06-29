@@ -14,7 +14,8 @@
 
 ### Tipo de Usuário
 
-* [X] Criar entidade `TipoUsuario`
+* [X] Criar entidade `TipoUsuario
+* `
 * [X] Criar Repository
 * [X] Criar Service
 * [X] Criar Controller

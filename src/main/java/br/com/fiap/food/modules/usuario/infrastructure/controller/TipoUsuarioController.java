@@ -6,6 +6,7 @@ import br.com.fiap.food.modules.usuario.infrastructure.controller.dto.request.Ti
 import br.com.fiap.food.modules.usuario.infrastructure.controller.dto.response.TipoUsuarioResponse;
 
 import br.com.fiap.food.modules.usuario.infrastructure.controller.mapper.TipoUsuarioApiMapper;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +34,7 @@ public class TipoUsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<TipoUsuarioResponse> criar(@RequestBody TipoUsuarioRequest request) {
+    public ResponseEntity<TipoUsuarioResponse> criar(@Valid @RequestBody TipoUsuarioRequest request) {
         TipoUsuario tipoUsuario = mapper.toDomain(request);
         TipoUsuario criado = criarTipoUsuarioUseCase.execute(tipoUsuario);
         TipoUsuarioResponse response = mapper.toResponse(criado);
