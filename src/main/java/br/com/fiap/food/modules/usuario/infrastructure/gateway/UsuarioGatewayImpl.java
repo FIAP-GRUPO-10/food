@@ -1,9 +1,13 @@
 package br.com.fiap.food.modules.usuario.infrastructure.gateway;
 
 import br.com.fiap.food.modules.usuario.domain.entity.Usuario;
+import br.com.fiap.food.modules.usuario.domain.exception.TipoUsuarioNaoEncontradoException;
 import br.com.fiap.food.modules.usuario.domain.gateway.UsuarioGateway;
+import br.com.fiap.food.modules.usuario.infrastructure.controller.dto.response.UsuarioResponse;
+import br.com.fiap.food.modules.usuario.infrastructure.persistence.entity.TipoUsuarioEntity;
 import br.com.fiap.food.modules.usuario.infrastructure.persistence.entity.UsuarioEntity;
 import br.com.fiap.food.modules.usuario.infrastructure.persistence.mapper.UsuarioEntityMapper;
+import br.com.fiap.food.modules.usuario.infrastructure.persistence.repository.TipoUsuarioRepository;
 import br.com.fiap.food.modules.usuario.infrastructure.persistence.repository.UsuarioRepository;
 import org.springframework.stereotype.Component;
 
@@ -14,19 +18,26 @@ import java.util.Optional;
 public class UsuarioGatewayImpl implements UsuarioGateway {
 
     private final UsuarioRepository repository;
+    private final TipoUsuarioRepository tipoUsuarioRepository;
     private final UsuarioEntityMapper mapper;
 
-    public UsuarioGatewayImpl(UsuarioRepository repository, UsuarioEntityMapper mapper) {
+    public UsuarioGatewayImpl(UsuarioRepository repository, TipoUsuarioRepository tipoUsuarioRepository, UsuarioEntityMapper mapper) {
         this.repository = repository;
+        this.tipoUsuarioRepository = tipoUsuarioRepository;
         this.mapper = mapper;
     }
 
     @Override
     public Usuario salvar(Usuario usuario) {
+        Long tipoUsuarioId = usuario.getTipoUsuario().getId();
+        TipoUsuarioEntity tipoEntity = tipoUsuarioRepository.findById(tipoUsuarioId)
+                .orElseThrow(() -> new TipoUsuarioNaoEncontradoException(tipoUsuarioId));
+
         UsuarioEntity entity = mapper.toEntity(usuario);
-        UsuarioEntity save = repository.save(entity);
-        return mapper.toDomain(save);
+        entity.setTipoUsuario(tipoEntity);
+        return mapper.toDomain(repository.save(entity));
     }
+
 
     @Override
     public Optional<Usuario> buscarPorId(Long id) {
@@ -35,11 +46,21 @@ public class UsuarioGatewayImpl implements UsuarioGateway {
 
     @Override
     public List<Usuario> listarTodos() {
-        return List.of();
+        return repository.findAll().stream()
+                .map(mapper::toDomain)
+                .toList();
+    }
+
+    @Override
+    public Usuario atualizar(Long id, Usuario usuario) {
+        usuario.setId(id);
+        UsuarioEntity entity = mapper.toEntity(usuario);
+        UsuarioEntity atualizado = repository.save(entity);
+        return mapper.toDomain(atualizado);
     }
 
     @Override
     public void deletar(Long id) {
-
+        repository.deleteById(id);
     }
 }

@@ -1,6 +1,6 @@
 package br.com.fiap.food.modules.usuario.infrastructure.persistence.entity;
 
-import br.com.fiap.food.modules.usuario.domain.enums.TipoUsuario;
+import br.com.fiap.food.modules.usuario.domain.entity.TipoUsuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,7 +20,7 @@ public class UsuarioEntity {
     private String nome;
     private String email;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "tipo_usuario")
-    private TipoUsuario tipoUsuario;
+    @ManyToOne
+    @JoinColumn(name = "tipo_usuario_id", nullable = false)
+    private TipoUsuarioEntity tipoUsuario;
 }

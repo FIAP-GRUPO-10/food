@@ -10,5 +10,6 @@ public interface UsuarioGateway {
     Usuario salvar(Usuario usuario);
     Optional<Usuario> buscarPorId(Long id);
     List<Usuario> listarTodos();
+    Usuario atualizar(Long id, Usuario usuario);
     void deletar(Long id);
 }
