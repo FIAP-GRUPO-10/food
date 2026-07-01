@@ -5,6 +5,8 @@ import br.com.fiap.food.modules.usuario.domain.entity.Usuario;
 import br.com.fiap.food.modules.usuario.infrastructure.controller.dto.request.UsuarioRequest;
 import br.com.fiap.food.modules.usuario.infrastructure.controller.dto.response.UsuarioResponse;
 import br.com.fiap.food.modules.usuario.infrastructure.controller.mapper.UsuarioApiMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +16,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/usuario")
 public class UsuarioController {
+
+    private static final Logger logger = LoggerFactory.getLogger(UsuarioController.class);
 
     private final UsuarioApiMapper mapper;
     private final CriarUsuarioUseCase criarUsuarioUseCase;
@@ -36,26 +40,30 @@ public class UsuarioController {
         this.deletarUsuarioUseCase = deletarUsuarioUseCase;
     }
 
-
     @PostMapping
     public ResponseEntity<UsuarioResponse> criarUsuario(@RequestBody UsuarioRequest request) {
+        logger.info("Iniciando criação de usuário: {}", request);
         Usuario usuario = mapper.toDomain(request);
         Usuario criado = criarUsuarioUseCase.execute(usuario);
+        logger.info("Usuário criado com ID: {}", criado.getId());
         UsuarioResponse response = mapper.toResponse(criado);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<UsuarioResponse> buscarPorId(@PathVariable Long id) {
+        logger.info("Buscando usuário por ID: {}", id);
         Usuario usuario = buscarUsuarioPorIdUseCase.execute(id);
+        logger.info("Usuário encontrado: {}", usuario);
         UsuarioResponse response = mapper.toResponse(usuario);
         return ResponseEntity.ok(response);
     }
 
-
     @GetMapping
     public ResponseEntity<List<UsuarioResponse>> listarTodos() {
+        logger.info("Listando todos os usuários");
         List<Usuario> usuarios = listarUsuariosUseCase.execute();
+        logger.info("Total de usuários encontrados: {}", usuarios.size());
         List<UsuarioResponse> responses = usuarios.stream()
                 .map(mapper::toResponse)
                 .toList();
@@ -65,16 +73,19 @@ public class UsuarioController {
     @PutMapping("/{id}")
     public ResponseEntity<UsuarioResponse> atualizarUsuario(@PathVariable Long id,
                                                             @RequestBody UsuarioRequest request) {
+        logger.info("Atualizando usuário ID: {} com dados: {}", id, request);
         Usuario usuario = mapper.toDomain(request);
         Usuario atualizado = atualizarUsuarioUseCase.execute(id, usuario);
+        logger.info("Usuário atualizado: {}", atualizado);
         UsuarioResponse response = mapper.toResponse(atualizado);
         return ResponseEntity.ok(response);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarUsuario(@PathVariable Long id) {
+        logger.info("Deletando usuário ID: {}", id);
         deletarUsuarioUseCase.execute(id);
+        logger.info("Usuário ID: {} deletado com sucesso", id);
         return ResponseEntity.noContent().build();
     }
-
 }
