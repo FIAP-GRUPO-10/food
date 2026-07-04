@@ -1,6 +1,5 @@
 package br.com.fiap.food.modules.usuario.infrastructure.persistence.entity;
 
-import br.com.fiap.food.modules.usuario.domain.entity.TipoUsuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

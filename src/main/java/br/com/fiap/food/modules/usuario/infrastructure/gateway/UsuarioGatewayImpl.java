@@ -3,7 +3,6 @@ package br.com.fiap.food.modules.usuario.infrastructure.gateway;
 import br.com.fiap.food.modules.usuario.domain.entity.Usuario;
 import br.com.fiap.food.modules.usuario.domain.exception.TipoUsuarioNaoEncontradoException;
 import br.com.fiap.food.modules.usuario.domain.gateway.UsuarioGateway;
-import br.com.fiap.food.modules.usuario.infrastructure.controller.dto.response.UsuarioResponse;
 import br.com.fiap.food.modules.usuario.infrastructure.persistence.entity.TipoUsuarioEntity;
 import br.com.fiap.food.modules.usuario.infrastructure.persistence.entity.UsuarioEntity;
 import br.com.fiap.food.modules.usuario.infrastructure.persistence.mapper.UsuarioEntityMapper;

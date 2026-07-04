@@ -1,44 +1,37 @@
 package br.com.fiap.food.modules.usuario.domain.exception;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.http.HttpStatus;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class TipoUsuarioJaCadastradoExceptionTest {
 
-    @Test
-    void testCriarExcecaoComNome() {
-        String nome = "ADMIN";
+    @ParameterizedTest
+    @CsvSource({
+            "ADMIN, Tipo de usuário já cadastrado: ADMIN",
+            "USER, Tipo de usuário já cadastrado: USER",
+            "'', Tipo de usuário já cadastrado:",
+            "'  GUEST  ', Tipo de usuário já cadastrado: GUEST",
+            "SUPER_ADMIN_MODERATOR_USUARIO_ESPECIAL, Tipo de usuário já cadastrado: SUPER_ADMIN_MODERATOR_USUARIO_ESPECIAL",
+            "ADMIN@#$%, Tipo de usuário já cadastrado: ADMIN@#$%"
+    })
+    void testExcecaoComVariadosNomes(String nome, String mensagemEsperada) {
         TipoUsuarioJaCadastradoException exception = new TipoUsuarioJaCadastradoException(nome);
 
         assertNotNull(exception);
         assertEquals(nome, exception.getNome());
         assertEquals(HttpStatus.CONFLICT, exception.getStatus());
-    }
-
-    @Test
-    void testMensagemExcecao() {
-        String nome = "USER";
-        TipoUsuarioJaCadastradoException exception = new TipoUsuarioJaCadastradoException(nome);
-
-        String mensagemEsperada = "Tipo de usuário já cadastrado: " + nome;
         assertEquals(mensagemEsperada, exception.getMessage());
     }
 
-    @Test
-    void testStatusHttpConflito() {
-        TipoUsuarioJaCadastradoException exception = new TipoUsuarioJaCadastradoException("ADMIN");
-
-        assertEquals(HttpStatus.CONFLICT, exception.getStatus());
-        assertEquals(409, exception.getStatus().value());
-    }
-
-    @Test
-    void testExcecaoComNomeDiferente() {
-        String nome1 = "ADMIN";
-        String nome2 = "USER";
-
+    @ParameterizedTest
+    @CsvSource({
+            "ADMIN, USER",
+            "USER, ADMIN@#$%"
+    })
+    void testExcecaoComNomesDiferentes(String nome1, String nome2) {
         TipoUsuarioJaCadastradoException exception1 = new TipoUsuarioJaCadastradoException(nome1);
         TipoUsuarioJaCadastradoException exception2 = new TipoUsuarioJaCadastradoException(nome2);
 
@@ -46,46 +39,19 @@ class TipoUsuarioJaCadastradoExceptionTest {
         assertNotEquals(exception1.getMessage(), exception2.getMessage());
     }
 
-    @Test
-    void testExcecaoEstendeRuntimeException() {
-        TipoUsuarioJaCadastradoException exception = new TipoUsuarioJaCadastradoException("ADMIN");
-
-        assertTrue(exception instanceof RuntimeException);
+    @ParameterizedTest
+    @CsvSource({"ADMIN", "USER"})
+    void testExcecaoEstendeRuntimeException(String nome) {
+        TipoUsuarioJaCadastradoException exception = new TipoUsuarioJaCadastradoException(nome);
+        assertInstanceOf(RuntimeException.class, exception);
     }
 
-    @Test
-    void testExcecaoComNomeVazio() {
-        String nome = "";
+    @ParameterizedTest
+    @CsvSource({"ADMIN", "USER"})
+    void testStatusHttpConflito(String nome) {
         TipoUsuarioJaCadastradoException exception = new TipoUsuarioJaCadastradoException(nome);
 
-        assertEquals(nome, exception.getNome());
-        assertTrue(exception.getMessage().contains("já cadastrado"));
-    }
-
-    @Test
-    void testExcecaoComNomeComEspacos() {
-        String nome = "  GUEST  ";
-        TipoUsuarioJaCadastradoException exception = new TipoUsuarioJaCadastradoException(nome);
-
-        assertEquals(nome, exception.getNome());
-        assertTrue(exception.getMessage().contains(nome));
-    }
-
-    @Test
-    void testExcecaoComNomeLongo() {
-        String nome = "SUPER_ADMIN_MODERATOR_USUARIO_ESPECIAL";
-        TipoUsuarioJaCadastradoException exception = new TipoUsuarioJaCadastradoException(nome);
-
-        assertEquals(nome, exception.getNome());
-        assertTrue(exception.getMessage().contains(nome));
-    }
-
-    @Test
-    void testExcecaoComNomeEspecial() {
-        String nome = "ADMIN@#$%";
-        TipoUsuarioJaCadastradoException exception = new TipoUsuarioJaCadastradoException(nome);
-
-        assertEquals(nome, exception.getNome());
-        assertTrue(exception.getMessage().contains(nome));
+        assertEquals(HttpStatus.CONFLICT, exception.getStatus());
+        assertEquals(409, exception.getStatus().value());
     }
 }
