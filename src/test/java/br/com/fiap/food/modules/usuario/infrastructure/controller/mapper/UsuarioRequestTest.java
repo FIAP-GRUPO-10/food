@@ -1,32 +1,31 @@
 package br.com.fiap.food.modules.usuario.infrastructure.controller.mapper;
 
+import br.com.fiap.food.modules.usuario.domain.entity.TipoUsuario;
 import br.com.fiap.food.modules.usuario.infrastructure.controller.dto.request.UsuarioRequest;
 import org.junit.jupiter.api.Test;
+import org.mapstruct.factory.Mappers;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class UsuarioRequestTest {
 
+
+    private final UsuarioApiMapper mapper = Mappers.getMapper(UsuarioApiMapper.class);
+
     @Test
-    void testCriacaoUsuarioRequest() {
-        String nome = "João";
-        String email = "joao@teste.com";
-        Long tipoUsuarioId = 1L;
+    void testToTipoUsuarioComIdNulo() {
+        TipoUsuario tipoUsuario = mapper.toTipoUsuario(null);
 
-        UsuarioRequest request = new UsuarioRequest(nome, email, tipoUsuarioId);
-
-        assertNotNull(request);
-        assertEquals(nome, request.nome());
-        assertEquals(email, request.email());
-        assertEquals(tipoUsuarioId, request.tipoUsuario());
+        assertNull(tipoUsuario, "Quando o id é nulo, deve retornar null");
     }
 
     @Test
-    void testUsuarioRequestComValoresNulos() {
-        UsuarioRequest request = new UsuarioRequest(null, null, null);
+    void testToTipoUsuarioComIdValido() {
+        Long id = 10L;
+        TipoUsuario tipoUsuario = mapper.toTipoUsuario(id);
 
-        assertNull(request.nome());
-        assertNull(request.email());
-        assertNull(request.tipoUsuario());
+        assertNotNull(tipoUsuario, "Deve retornar um objeto TipoUsuario");
+        assertEquals(id, tipoUsuario.getId(), "O id deve ser atribuído corretamente");
+        assertNull(tipoUsuario.getNome(), "Nome deve ser null");
     }
 }
