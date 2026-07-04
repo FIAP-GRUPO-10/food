@@ -8,16 +8,10 @@ public class TipoUsuarioJaCadastradoException extends RuntimeException {
     private static final HttpStatus status = HttpStatus.CONFLICT;
 
     public TipoUsuarioJaCadastradoException(String nome) {
-        super(buildMessage(nome));
+        super((nome == null || nome.trim().isEmpty())
+                ? "Tipo de usuário já cadastrado:"
+                : "Tipo de usuário já cadastrado: " + nome.replaceAll("\\s+$", ""));
         this.nome = nome;
-    }
-
-    private static String buildMessage(String nome) {
-        String trimmed = nome == null ? "" : nome.trim();
-        if (trimmed.isEmpty()) {
-            return "Tipo de usuário já cadastrado:";
-        }
-        return "Tipo de usuário já cadastrado: " + trimmed;
     }
 
     public String getNome() {

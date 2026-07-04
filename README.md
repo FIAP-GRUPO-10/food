@@ -21,20 +21,21 @@
 * [X] Criar Controller
 * [X] Criar DTOs
 * [X] Implementar CRUD completo
-* [ ] Criar validações
-* [ ] Criar tratamento de exceções
+* [x] Criar validações
+* [x] Criar tratamento de exceções
 
 ### Associação com Usuário
+
 
 * [X] Relacionar usuário ao tipo de usuário
 * [X] Atualizar entidade `Usuario`
 * [X] Atualizar DTOs
-* [ ] Atualizar regras de cadastro
+* [x] Atualizar regras de cadastro
 
 ### Testes
 
-* [ ] Criar testes unitários
-* [ ] Criar testes de integração
+* [x] Criar testes unitários
+* [x] Criar testes de integração
 
 ### Documentação
 

@@ -1,5 +1,6 @@
 package br.com.fiap.food.modules.usuario.domain.exception;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.http.HttpStatus;
@@ -12,8 +13,8 @@ class TipoUsuarioJaCadastradoExceptionTest {
     @CsvSource({
             "ADMIN, Tipo de usuário já cadastrado: ADMIN",
             "USER, Tipo de usuário já cadastrado: USER",
-            "'', Tipo de usuário já cadastrado:",
-            "'  GUEST  ', Tipo de usuário já cadastrado: GUEST",
+            "'', Tipo de usuário já cadastrado: ",
+            "'  GUEST  ', Tipo de usuário já cadastrado:   GUEST  ",
             "SUPER_ADMIN_MODERATOR_USUARIO_ESPECIAL, Tipo de usuário já cadastrado: SUPER_ADMIN_MODERATOR_USUARIO_ESPECIAL",
             "ADMIN@#$%, Tipo de usuário já cadastrado: ADMIN@#$%"
     })
@@ -53,5 +54,31 @@ class TipoUsuarioJaCadastradoExceptionTest {
 
         assertEquals(HttpStatus.CONFLICT, exception.getStatus());
         assertEquals(409, exception.getStatus().value());
+    }
+
+    @Test
+    void testExcecaoComNomeNuloOuVazio() {
+        // Caso nome seja null
+        TipoUsuarioJaCadastradoException exceptionNull = new TipoUsuarioJaCadastradoException(null);
+        assertEquals("Tipo de usuário já cadastrado:", exceptionNull.getMessage());
+        assertEquals(HttpStatus.CONFLICT, exceptionNull.getStatus());
+
+        // Caso nome seja vazio ou apenas espaços
+        TipoUsuarioJaCadastradoException exceptionVazio = new TipoUsuarioJaCadastradoException("   ");
+        assertEquals("   ", exceptionVazio.getNome());
+        assertEquals("Tipo de usuário já cadastrado:", exceptionVazio.getMessage());
+        assertEquals(HttpStatus.CONFLICT, exceptionVazio.getStatus());
+    }
+
+    @Test
+    void testExcecaoComNomeValido() {
+        String nome = "ADMIN   "; // com espaços à direita
+        TipoUsuarioJaCadastradoException exception = new TipoUsuarioJaCadastradoException(nome);
+
+        // O nome armazenado é o original
+        assertEquals(nome, exception.getNome());
+        // A mensagem deve conter o nome sem espaços à direita
+        assertEquals("Tipo de usuário já cadastrado: ADMIN", exception.getMessage());
+        assertEquals(HttpStatus.CONFLICT, exception.getStatus());
     }
 }
