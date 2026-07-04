@@ -39,8 +39,8 @@
 
 ### Documentação
 
-* [ ] Documentar endpoints
-* [ ] Criar Collection do Postman
+* [x] Documentar endpoints
+* [x] Criar Collection do Postman
 
 ---
 
