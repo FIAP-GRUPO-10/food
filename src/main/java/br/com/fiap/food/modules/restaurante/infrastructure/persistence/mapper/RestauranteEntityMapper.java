@@ -8,6 +8,6 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring", uses = UsuarioEntityMapper.class)
 public interface RestauranteEntityMapper {
 
-    RestauranteEntity toEntity(Restaurante restaurant);
+    RestauranteEntity toEntity(Restaurante restaurante);
     Restaurante toDomain(RestauranteEntity entity);
 }
