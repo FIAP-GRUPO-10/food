@@ -51,6 +51,7 @@ O projeto segue os princípios de **Clean Architecture**, garantindo separação
 
 ### Restaurantes
 - `POST /api/v1/restaurante` → Criar restaurante
+- `GET /api/v1/restaurante/{id}` → Busca restaurante por id
 - `GET /api/v1/restaurante` → Listar restaurantes
 - `PUT /api/v1/restaurante/{id}` → Atualizar restaurante
 - `DELETE /api/v1/restaurante/{id}` → Remover restaurante

@@ -14,6 +14,6 @@ public class BuscarRestaurantePorIdUseCase {
 
     public Restaurante execute(Long id) {
         return gateway.buscarPorId(id)
-                .orElseThrow(() -> new RestauranteNaoEncontradoException("Restaurante não encontrado"));
+                .orElseThrow(() -> new RestauranteNaoEncontradoException(id));
     }
 }

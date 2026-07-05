@@ -1,6 +1,7 @@
 package br.com.fiap.food.modules.restaurante.infrastructure.gateway;
 
 import br.com.fiap.food.modules.restaurante.domain.entity.Restaurante;
+import br.com.fiap.food.modules.restaurante.domain.exception.RestauranteNaoEncontradoException;
 import br.com.fiap.food.modules.restaurante.domain.gateway.RestauranteGateway;
 import br.com.fiap.food.modules.restaurante.infrastructure.persistence.entity.RestauranteEntity;
 import br.com.fiap.food.modules.restaurante.infrastructure.persistence.mapper.RestauranteEntityMapper;
@@ -29,16 +30,31 @@ public class RestauranteGatewayImpl implements RestauranteGateway {
     }
 
     @Override
+    public Restaurante atualizar(Restaurante restaurante) {
+
+        RestauranteEntity entity = mapper.toEntity(restaurante);
+        RestauranteEntity save = repository.save(entity);
+
+        return mapper.toDomain(save);
+    }
+
+    @Override
     public Optional<Restaurante> buscarPorId(Long id) {
         return repository.findById(id).map(mapper::toDomain);
     }
 
     @Override
     public List<Restaurante> listarTodos() {
-        return List.of();
+        return repository.findAll().stream().map(mapper::toDomain).toList();
     }
 
     @Override
     public void deletar(Long id) {
+        repository.deleteById(id);
+    }
+
+    @Override
+    public boolean existePorNomeEEndereco(String nome, String endereco) {
+        return repository.existsByNomeAndEndereco(nome, endereco);
     }
 }
