@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -41,7 +42,7 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<UsuarioResponse> criarUsuario(@RequestBody UsuarioRequest request) {
+    public ResponseEntity<UsuarioResponse> criarUsuario(@Valid @RequestBody UsuarioRequest request) {
         logger.info("Iniciando criação de usuário: {}", request);
         Usuario usuario = mapper.toDomain(request);
         Usuario criado = criarUsuarioUseCase.execute(usuario);
@@ -72,7 +73,7 @@ public class UsuarioController {
 
     @PutMapping("/{id}")
     public ResponseEntity<UsuarioResponse> atualizarUsuario(@PathVariable Long id,
-                                                            @RequestBody UsuarioRequest request) {
+                                                            @Valid @RequestBody UsuarioRequest request) {
         logger.info("Atualizando usuário ID: {} com dados: {}", id, request);
         Usuario usuario = mapper.toDomain(request);
         Usuario atualizado = atualizarUsuarioUseCase.execute(id, usuario);

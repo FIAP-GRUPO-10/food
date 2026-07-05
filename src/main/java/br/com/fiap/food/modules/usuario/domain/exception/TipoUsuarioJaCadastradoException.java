@@ -5,10 +5,12 @@ import org.springframework.http.HttpStatus;
 public class TipoUsuarioJaCadastradoException extends RuntimeException {
 
     private final String nome;
-    private final HttpStatus status = HttpStatus.CONFLICT;
+    private static final HttpStatus status = HttpStatus.CONFLICT;
 
     public TipoUsuarioJaCadastradoException(String nome) {
-        super("Tipo de usuário já cadastrado: " + nome);
+        super((nome == null || nome.trim().isEmpty())
+                ? "Tipo de usuário já cadastrado:"
+                : "Tipo de usuário já cadastrado: " + nome.replaceAll("\\s+$", ""));
         this.nome = nome;
     }
 

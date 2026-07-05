@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 public class UsuarioNaoEncontradoException extends RuntimeException {
 
     private final Long id;
-    private final HttpStatus status = HttpStatus.NOT_FOUND;
+    private static final HttpStatus status = HttpStatus.NOT_FOUND;
 
     public UsuarioNaoEncontradoException(Long id) {
         super("Usuário não encontrado com id: " + id);

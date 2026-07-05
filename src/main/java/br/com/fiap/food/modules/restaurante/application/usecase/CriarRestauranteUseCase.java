@@ -4,11 +4,7 @@ import br.com.fiap.food.modules.restaurante.domain.entity.Restaurante;
 import br.com.fiap.food.modules.restaurante.domain.exception.RestauranteNaoEncontradoException;
 import br.com.fiap.food.modules.restaurante.domain.gateway.RestauranteGateway;
 import br.com.fiap.food.modules.usuario.domain.entity.Usuario;
-import br.com.fiap.food.modules.usuario.domain.exception.UsuarioNaoEncontradoException;
 import br.com.fiap.food.modules.usuario.domain.gateway.UsuarioGateway;
-import br.com.fiap.food.modules.usuario.infrastructure.persistence.entity.UsuarioEntity;
-
-import java.util.Optional;
 
 public class CriarRestauranteUseCase {
 

@@ -40,6 +40,5 @@ public class RestauranteGatewayImpl implements RestauranteGateway {
 
     @Override
     public void deletar(Long id) {
-
     }
 }

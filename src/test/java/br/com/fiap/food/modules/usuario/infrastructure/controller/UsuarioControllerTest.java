@@ -50,7 +50,7 @@ class UsuarioControllerTest {
 
     @Test
     void deveCriarUsuario() throws Exception {
-        UsuarioRequest request = new UsuarioRequest("Sandoval", "sandoval@email.com", buildTipoUsuario());
+        UsuarioRequest request = new UsuarioRequest("Sandoval", "sandoval@email.com", buildTipoUsuario().getId());
         Usuario usuario = buildUsuario(1L, "Sandoval", "sandoval@email.com");
         UsuarioResponse response = buildUsuarioResponse(1L, "Sandoval", "sandoval@email.com");
 
@@ -99,7 +99,7 @@ class UsuarioControllerTest {
 
     @Test
     void deveAtualizarUsuario() throws Exception {
-        UsuarioRequest request = new UsuarioRequest("Sandoval Atualizado", "novo@email.com", buildTipoUsuario());
+        UsuarioRequest request = new UsuarioRequest("Sandoval Atualizado", "novo@email.com", buildTipoUsuario().getId());
         Usuario usuarioAtualizado = buildUsuario(1L, "Sandoval Atualizado", "novo@email.com");
         UsuarioResponse response = buildUsuarioResponse(1L, "Sandoval Atualizado", "novo@email.com");
 

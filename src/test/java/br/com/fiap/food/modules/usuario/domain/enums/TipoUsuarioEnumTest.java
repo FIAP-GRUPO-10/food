@@ -52,7 +52,7 @@ class TipoUsuarioEnumTest {
         TipoUsuarioEnum tipo2 = TipoUsuarioEnum.CLIENTE;
 
         assertEquals(tipo1, tipo2);
-        assertTrue(tipo1 == tipo2);
+        assertSame(tipo1, tipo2);
     }
 
     @Test
@@ -61,7 +61,7 @@ class TipoUsuarioEnumTest {
         TipoUsuarioEnum dono = TipoUsuarioEnum.DONO;
 
         assertNotEquals(cliente, dono);
-        assertFalse(cliente == dono);
+        assertNotSame(cliente, dono);
     }
 
     @Test
