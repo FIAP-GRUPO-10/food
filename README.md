@@ -50,28 +50,28 @@
 
 ### Cadastro de Restaurante
 
-* [ ] Criar entidade `Restaurant`
-* [ ] Criar Repository
-* [ ] Criar Service
-* [ ] Criar Controller
-* [ ] Criar DTOs
-* [ ] Implementar CRUD completo
-* [ ] Criar validações
+* [x] Criar entidade `Restaurante`
+* [x] Criar Repository
+* [x] Criar Service
+* [x] Criar Controller
+* [x] Criar DTOs
+* [x] Implementar CRUD completo
+* [x] Criar validações
 
 ### Relacionamentos
 
-* [ ] Associar restaurante ao usuário (dono)
-* [ ] Validar existência do usuário responsável
+* [x] Associar restaurante ao usuário (dono)
+* [x] Validar existência do usuário responsável
 
 ### Testes
 
-* [ ] Criar testes unitários
-* [ ] Criar testes de integração
+* [x] Criar testes unitários
+* [x] Criar testes de integração
 
 ### Documentação
 
 * [ ] Documentar endpoints
-* [ ] Atualizar Collection do Postman
+* [x] Atualizar Collection do Postman
 
 ---
 

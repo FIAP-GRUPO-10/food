@@ -19,7 +19,8 @@ public class RestauranteEntity {
     private String nome;
     private String endereco;
     private String tipoCozinha;
-    private LocalTime horarioFuncionamento;
+    private LocalTime horarioAbertura;
+    private LocalTime horarioFechamento;
 
     @ManyToOne
     @JoinColumn(name = "dono_id", referencedColumnName = "id")

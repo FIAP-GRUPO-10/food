@@ -1,4 +1,4 @@
-package br.com.fiap.food.modules.usuario.domain.exception.handler;
+package br.com.fiap.food.shared.exception;
 
 import br.com.fiap.food.modules.usuario.domain.exception.TipoUsuarioJaCadastradoException;
 import br.com.fiap.food.modules.usuario.domain.exception.TipoUsuarioNaoEncontradoException;
@@ -7,12 +7,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
+import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class GlobalExceptionHandlerTest {
 
@@ -28,7 +30,10 @@ class GlobalExceptionHandlerTest {
         String nome = "ADMIN";
         TipoUsuarioJaCadastradoException exception = new TipoUsuarioJaCadastradoException(nome);
 
-        ProblemDetail problemDetail = exceptionHandler.handleJaCadastrado(exception);
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        request.setRequestURI("/tipo-usuario");
+
+        ProblemDetail problemDetail = exceptionHandler.handleJaCadastrado(exception, request);
 
         assertNotNull(problemDetail);
         assertEquals(HttpStatus.CONFLICT.value(), problemDetail.getStatus());
@@ -41,7 +46,10 @@ class GlobalExceptionHandlerTest {
         Long id = 1L;
         TipoUsuarioNaoEncontradoException exception = new TipoUsuarioNaoEncontradoException(id);
 
-        ProblemDetail problemDetail = exceptionHandler.handleTipoNaoEncontrado(exception);
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        request.setRequestURI("/tipo-usuario");
+
+        ProblemDetail problemDetail = exceptionHandler.handleTipoNaoEncontrado(exception, request);
 
         assertNotNull(problemDetail);
         assertEquals(HttpStatus.NOT_FOUND.value(), problemDetail.getStatus());
@@ -54,7 +62,10 @@ class GlobalExceptionHandlerTest {
         Long id = 5L;
         UsuarioNaoEncontradoException exception = new UsuarioNaoEncontradoException(id);
 
-        ProblemDetail problemDetail = exceptionHandler.handleUsuarioNaoEncontrado(exception);
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        request.setRequestURI("/usuario");
+
+        ProblemDetail problemDetail = exceptionHandler.handleUsuarioNaoEncontrado(exception, request);
 
         assertNotNull(problemDetail);
         assertEquals(HttpStatus.NOT_FOUND.value(), problemDetail.getStatus());
@@ -73,7 +84,10 @@ class GlobalExceptionHandlerTest {
         when(bindingResult.getFieldErrors()).thenReturn(java.util.List.of(fieldError));
         when(exception.getBindingResult()).thenReturn(bindingResult);
 
-        ProblemDetail problemDetail = exceptionHandler.handleValidationErrors(exception);
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        request.setRequestURI("usuario");
+
+        ProblemDetail problemDetail = exceptionHandler.handleValidationErrors(exception, request);
 
         assertNotNull(problemDetail);
         assertEquals(HttpStatus.BAD_REQUEST.value(), problemDetail.getStatus());
@@ -86,7 +100,10 @@ class GlobalExceptionHandlerTest {
         String nome = "USER";
         TipoUsuarioJaCadastradoException exception = new TipoUsuarioJaCadastradoException(nome);
 
-        ProblemDetail problemDetail = exceptionHandler.handleJaCadastrado(exception);
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        request.setRequestURI("/tipo-usuario");
+
+        ProblemDetail problemDetail = exceptionHandler.handleJaCadastrado(exception, request);
 
         assertTrue(problemDetail.getDetail().contains("USER"));
         assertTrue(problemDetail.getDetail().contains("já cadastrado"));
@@ -97,7 +114,10 @@ class GlobalExceptionHandlerTest {
         Long id = 999L;
         TipoUsuarioNaoEncontradoException exception = new TipoUsuarioNaoEncontradoException(id);
 
-        ProblemDetail problemDetail = exceptionHandler.handleTipoNaoEncontrado(exception);
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        request.setRequestURI("/tipo-usuario");
+
+        ProblemDetail problemDetail = exceptionHandler.handleTipoNaoEncontrado(exception, request);
 
         assertTrue(problemDetail.getDetail().contains("999"));
     }
@@ -107,7 +127,10 @@ class GlobalExceptionHandlerTest {
         Long id = 123L;
         UsuarioNaoEncontradoException exception = new UsuarioNaoEncontradoException(id);
 
-        ProblemDetail problemDetail = exceptionHandler.handleUsuarioNaoEncontrado(exception);
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        request.setRequestURI("/usuario");
+
+        ProblemDetail problemDetail = exceptionHandler.handleUsuarioNaoEncontrado(exception, request);
 
         assertTrue(problemDetail.getDetail().contains("123"));
     }
@@ -128,7 +151,10 @@ class GlobalExceptionHandlerTest {
                 .thenReturn(java.util.List.of(fieldError1, fieldError2));
         when(exception.getBindingResult()).thenReturn(bindingResult);
 
-        ProblemDetail problemDetail = exceptionHandler.handleValidationErrors(exception);
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        request.setRequestURI("/usuario");
+
+        ProblemDetail problemDetail = exceptionHandler.handleValidationErrors(exception, request);
 
         assertNotNull(problemDetail);
         assertEquals(HttpStatus.BAD_REQUEST.value(), problemDetail.getStatus());
@@ -137,7 +163,10 @@ class GlobalExceptionHandlerTest {
     @Test
     void testHandleJaCadastradoStatusCode() {
         TipoUsuarioJaCadastradoException exception = new TipoUsuarioJaCadastradoException("ADMIN");
-        ProblemDetail problemDetail = exceptionHandler.handleJaCadastrado(exception);
+
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        request.setRequestURI("/tipo-usuario");
+        ProblemDetail problemDetail = exceptionHandler.handleJaCadastrado(exception, request);
 
         assertEquals(HttpStatus.CONFLICT.value(), problemDetail.getStatus());
     }
@@ -145,7 +174,9 @@ class GlobalExceptionHandlerTest {
     @Test
     void testHandleTipoNaoEncontradoStatusCode() {
         TipoUsuarioNaoEncontradoException exception = new TipoUsuarioNaoEncontradoException(1L);
-        ProblemDetail problemDetail = exceptionHandler.handleTipoNaoEncontrado(exception);
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        request.setRequestURI("/tipo-usuario");
+        ProblemDetail problemDetail = exceptionHandler.handleTipoNaoEncontrado(exception, request);
 
         assertEquals(HttpStatus.NOT_FOUND.value(), problemDetail.getStatus());
     }
@@ -153,7 +184,9 @@ class GlobalExceptionHandlerTest {
     @Test
     void testHandleUsuarioNaoEncontradoStatusCode() {
         UsuarioNaoEncontradoException exception = new UsuarioNaoEncontradoException(1L);
-        ProblemDetail problemDetail = exceptionHandler.handleUsuarioNaoEncontrado(exception);
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        request.setRequestURI("/usuario");
+        ProblemDetail problemDetail = exceptionHandler.handleUsuarioNaoEncontrado(exception, request);
 
         assertEquals(HttpStatus.NOT_FOUND.value(), problemDetail.getStatus());
     }
@@ -165,7 +198,10 @@ class GlobalExceptionHandlerTest {
         when(bindingResult.getFieldErrors()).thenReturn(java.util.List.of());
         when(exception.getBindingResult()).thenReturn(bindingResult);
 
-        ProblemDetail problemDetail = exceptionHandler.handleValidationErrors(exception);
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        request.setRequestURI("/usuario");
+
+        ProblemDetail problemDetail = exceptionHandler.handleValidationErrors(exception, request);
 
         assertEquals(HttpStatus.BAD_REQUEST.value(), problemDetail.getStatus());
     }

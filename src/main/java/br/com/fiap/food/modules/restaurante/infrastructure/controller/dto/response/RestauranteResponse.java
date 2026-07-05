@@ -9,6 +9,7 @@ public record RestauranteResponse(
         String nome,
         String endereco,
         String tipoCozinha,
-        LocalTime horarioFuncionamento,
+        LocalTime horarioAbertura,
+        LocalTime horarioFechamento,
         UsuarioResponse dono
 ) {}

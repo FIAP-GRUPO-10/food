@@ -1,7 +1,7 @@
 package br.com.fiap.food.modules.restaurante.application.config;
 
-import br.com.fiap.food.modules.restaurante.application.usecase.BuscarRestaurantePorIdUseCase;
-import br.com.fiap.food.modules.restaurante.application.usecase.CriarRestauranteUseCase;
+import br.com.fiap.food.modules.restaurante.application.usecase.*;
+import br.com.fiap.food.modules.restaurante.domain.entity.Restaurante;
 import br.com.fiap.food.modules.restaurante.domain.gateway.RestauranteGateway;
 import br.com.fiap.food.modules.usuario.domain.gateway.UsuarioGateway;
 import org.springframework.context.annotation.Bean;
@@ -18,5 +18,20 @@ public class RestauranteConfig {
     @Bean
     public BuscarRestaurantePorIdUseCase buscarRestaurantePorIdUseCase(RestauranteGateway gateway) {
         return new BuscarRestaurantePorIdUseCase(gateway);
+    }
+
+    @Bean
+    public AtualizarRestauranteUseCase atualizarRestauranteUseCase(RestauranteGateway restauranteGateway, UsuarioGateway usuarioGateway) {
+        return new AtualizarRestauranteUseCase(restauranteGateway, usuarioGateway);
+    }
+
+    @Bean
+    public DeletarRestauranteUseCase deletarRestauranteUseCase(RestauranteGateway restauranteGateway) {
+        return new DeletarRestauranteUseCase(restauranteGateway);
+    }
+
+    @Bean
+    public ListarRestaurantesUseCase listarRestaurantesUseCase(RestauranteGateway restauranteGateway) {
+        return new ListarRestaurantesUseCase(restauranteGateway);
     }
 }

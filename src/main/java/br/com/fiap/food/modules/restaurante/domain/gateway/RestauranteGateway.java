@@ -8,7 +8,9 @@ import java.util.Optional;
 public interface RestauranteGateway {
 
     Restaurante salvar(Restaurante restaurante);
+    Restaurante  atualizar(Restaurante restaurante);
     Optional<Restaurante> buscarPorId(Long id);
     List<Restaurante> listarTodos();
     void deletar(Long id);
+    boolean existePorNomeEEndereco(String nome, String endereco);
 }
