@@ -4,7 +4,7 @@
 
 * **Integrante 1:** Sandoval Bento
 * **Integrante 2:** Thiago Vanzele
-* **Integrante 3:** ______________________
+* **Integrante 3:** Luiz Eduardo Gambeti
 
 ---
 
