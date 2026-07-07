@@ -12,13 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import io.swagger.v3.oas.annotations.Parameter;
-
 @RestController
 @RequestMapping("/api/v1/restaurante")
-@Tag(name = "Restaurante", description = "Operações relacionadas a restaurantes")
 public class RestauranteController {
 
     private final RestauranteApiMapper mapper;
@@ -40,15 +35,13 @@ public class RestauranteController {
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Buscar restaurante por ID", description = "Retorna os dados de um restaurante pelo ID")
-    public ResponseEntity<RestauranteResponse> buscarPorId(@Parameter(description = "ID do restaurante", required = true) @PathVariable Long id) {
+    public ResponseEntity<RestauranteResponse> buscarPorId(@PathVariable Long id) {
         Restaurante restaurante = buscarRestaurantePorIdUseCase.execute(id);
         RestauranteResponse response = mapper.toResponse(restaurante);
         return ResponseEntity.ok(response);
     }
 
     @GetMapping
-    @Operation(summary = "Listar restaurantes", description = "Retorna a lista de restaurantes")
     public ResponseEntity<List<RestauranteResponse>> buscarTodos() {
         List<Restaurante> restaurantes = listarRestaurantesUseCase.execute();
         List<RestauranteResponse> responses = restaurantes.stream().map(mapper::toResponse).toList();
@@ -56,7 +49,6 @@ public class RestauranteController {
     }
 
     @PostMapping
-    @Operation(summary = "Criar restaurante", description = "Cria um novo restaurante")
     public ResponseEntity<RestauranteResponse> criarRestaurante(@RequestBody @Valid RestauranteRequest request) {
         Restaurante restaurante = mapper.toDomain(request);
         Restaurante criado = criarRestauranteUseCase.execute(restaurante);
@@ -66,8 +58,7 @@ public class RestauranteController {
     }
 
     @PutMapping("/{id}")
-    @Operation(summary = "Atualizar restaurante", description = "Atualiza os dados de um restaurante existente")
-    public ResponseEntity<RestauranteResponse> atualizarRestaurante(@Parameter(description = "ID do restaurante", required = true) @PathVariable Long id, @RequestBody @Valid RestauranteRequest request) {
+    public ResponseEntity<RestauranteResponse> atualizarRestaurante(@PathVariable Long id, @RequestBody @Valid RestauranteRequest request) {
         Restaurante domain = mapper.toDomain(request);
         Restaurante restaurante = atualizarRestauranteUseCase.execute(id, domain);
         RestauranteResponse response = mapper.toResponse(restaurante);
@@ -76,8 +67,7 @@ public class RestauranteController {
     }
 
     @DeleteMapping("/{id}")
-    @Operation(summary = "Deletar restaurante", description = "Remove um restaurante pelo ID")
-    public ResponseEntity<Void> deletarRestaurante(@Parameter(description = "ID do restaurante", required = true) @PathVariable Long id) {
+    public ResponseEntity<Void> deletarRestaurante(@PathVariable Long id) {
         deletarRestauranteUseCase.execute(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

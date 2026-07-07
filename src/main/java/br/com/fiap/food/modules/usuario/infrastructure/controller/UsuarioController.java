@@ -12,15 +12,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import io.swagger.v3.oas.annotations.Parameter;
-
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/usuario")
-@Tag(name = "Usuario", description = "Operações relacionadas a usuários")
 public class UsuarioController {
 
     private static final Logger logger = LoggerFactory.getLogger(UsuarioController.class);
@@ -47,7 +42,6 @@ public class UsuarioController {
     }
 
     @PostMapping
-    @Operation(summary = "Criar usuário", description = "Cria um novo usuário")
     public ResponseEntity<UsuarioResponse> criarUsuario(@Valid @RequestBody UsuarioRequest request) {
         logger.info("Iniciando criação de usuário: {}", request);
         Usuario usuario = mapper.toDomain(request);
@@ -58,8 +52,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Buscar usuário por ID", description = "Retorna um usuário pelo seu ID")
-    public ResponseEntity<UsuarioResponse> buscarPorId(@Parameter(description = "ID do usuário", required = true) @PathVariable Long id) {
+    public ResponseEntity<UsuarioResponse> buscarPorId(@PathVariable Long id) {
         logger.info("Buscando usuário por ID: {}", id);
         Usuario usuario = buscarUsuarioPorIdUseCase.execute(id);
         logger.info("Usuário encontrado: {}", usuario);
@@ -68,7 +61,6 @@ public class UsuarioController {
     }
 
     @GetMapping
-    @Operation(summary = "Listar usuários", description = "Retorna a lista de todos os usuários")
     public ResponseEntity<List<UsuarioResponse>> listarTodos() {
         logger.info("Listando todos os usuários");
         List<Usuario> usuarios = listarUsuariosUseCase.execute();
@@ -80,8 +72,7 @@ public class UsuarioController {
     }
 
     @PutMapping("/{id}")
-    @Operation(summary = "Atualizar usuário", description = "Atualiza os dados de um usuário existente")
-    public ResponseEntity<UsuarioResponse> atualizarUsuario(@Parameter(description = "ID do usuário", required = true) @PathVariable Long id,
+    public ResponseEntity<UsuarioResponse> atualizarUsuario(@PathVariable Long id,
                                                             @Valid @RequestBody UsuarioRequest request) {
         logger.info("Atualizando usuário ID: {} com dados: {}", id, request);
         Usuario usuario = mapper.toDomain(request);
@@ -92,8 +83,7 @@ public class UsuarioController {
     }
 
     @DeleteMapping("/{id}")
-    @Operation(summary = "Deletar usuário", description = "Remove um usuário pelo ID")
-    public ResponseEntity<Void> deletarUsuario(@Parameter(description = "ID do usuário", required = true) @PathVariable Long id) {
+    public ResponseEntity<Void> deletarUsuario(@PathVariable Long id) {
         logger.info("Deletando usuário ID: {}", id);
         deletarUsuarioUseCase.execute(id);
         logger.info("Usuário ID: {} deletado com sucesso", id);
