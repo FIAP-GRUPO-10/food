@@ -70,7 +70,7 @@
 
 ### Documentação
 
-* [ ] Documentar endpoints
+* [x] Documentar endpoints
 * [x] Atualizar Collection do Postman
 
 ---

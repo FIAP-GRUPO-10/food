@@ -2,6 +2,7 @@ package br.com.fiap.food.modules.restaurante.infrastructure.controller;
 
 import br.com.fiap.food.modules.restaurante.application.usecase.*;
 import br.com.fiap.food.modules.restaurante.domain.entity.Restaurante;
+import br.com.fiap.food.modules.restaurante.infrastructure.controller.docs.RestauranteControllerDocs;
 import br.com.fiap.food.modules.restaurante.infrastructure.controller.dto.request.RestauranteRequest;
 import br.com.fiap.food.modules.restaurante.infrastructure.controller.dto.response.RestauranteResponse;
 import br.com.fiap.food.modules.restaurante.infrastructure.controller.mapper.RestauranteApiMapper;
@@ -14,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/restaurante")
-public class RestauranteController {
+public class RestauranteController implements RestauranteControllerDocs {
 
     private final RestauranteApiMapper mapper;
     private final CriarRestauranteUseCase criarRestauranteUseCase;
