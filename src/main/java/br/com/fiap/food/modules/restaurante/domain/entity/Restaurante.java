@@ -3,7 +3,6 @@ package br.com.fiap.food.modules.restaurante.domain.entity;
 import br.com.fiap.food.modules.restaurante.domain.exception.HorarioInvalidoException;
 import br.com.fiap.food.modules.restaurante.domain.exception.RestauranteSemDonoException;
 import br.com.fiap.food.modules.usuario.domain.entity.Usuario;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -38,6 +37,20 @@ public class Restaurante {
         this.horarioAbertura = horarioAbertura;
         this.horarioFechamento = horarioFechamento;
         this.dono = dono;
+    }
+
+    private Restaurante(Long id) {
+        this.id = id;
+    }
+
+    public static Restaurante referenciaPorId(Long id) {
+        if (id == null) {
+            throw new IllegalArgumentException(
+                    "O id do restaurante é obrigatório"
+            );
+        }
+
+        return new Restaurante(id);
     }
 }
 

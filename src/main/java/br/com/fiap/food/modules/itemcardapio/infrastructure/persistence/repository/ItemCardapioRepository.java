@@ -5,11 +5,13 @@ import br.com.fiap.food.modules.itemcardapio.infrastructure.persistence.entity.I
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface ItemCardapioRepository extends JpaRepository<ItemCardapioEntity, Long> {
 
-    Optional<ItemCardapio> findByNome(String nome);
+    Optional<ItemCardapioEntity> findByNome(String nome);
     boolean existsByNome(String nome);
+    List<ItemCardapioEntity> findByRestauranteId(Long restauranteId);
 }
