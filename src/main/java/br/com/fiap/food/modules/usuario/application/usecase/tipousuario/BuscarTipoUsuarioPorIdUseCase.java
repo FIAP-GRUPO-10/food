@@ -1,6 +1,7 @@
 package br.com.fiap.food.modules.usuario.application.usecase.tipousuario;
 
 import br.com.fiap.food.modules.usuario.domain.entity.TipoUsuario;
+import br.com.fiap.food.modules.usuario.domain.exception.TipoUsuarioNaoEncontradoException;
 import br.com.fiap.food.modules.usuario.domain.exception.UsuarioNaoEncontradoException;
 import br.com.fiap.food.modules.usuario.domain.gateway.TipoUsuarioGateway;
 
@@ -14,6 +15,6 @@ public class BuscarTipoUsuarioPorIdUseCase {
 
     public TipoUsuario execute(Long id) {
         return gateway.buscarPorId(id)
-                .orElseThrow(() -> new UsuarioNaoEncontradoException(id));
+                .orElseThrow(() -> new TipoUsuarioNaoEncontradoException(id));
     }
 }

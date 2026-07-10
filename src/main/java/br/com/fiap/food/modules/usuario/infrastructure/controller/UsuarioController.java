@@ -2,6 +2,7 @@ package br.com.fiap.food.modules.usuario.infrastructure.controller;
 
 import br.com.fiap.food.modules.usuario.application.usecase.usuario.*;
 import br.com.fiap.food.modules.usuario.domain.entity.Usuario;
+import br.com.fiap.food.modules.usuario.infrastructure.controller.docs.UsuarioControllerDocs;
 import br.com.fiap.food.modules.usuario.infrastructure.controller.dto.request.UsuarioRequest;
 import br.com.fiap.food.modules.usuario.infrastructure.controller.dto.response.UsuarioResponse;
 import br.com.fiap.food.modules.usuario.infrastructure.controller.mapper.UsuarioApiMapper;
@@ -16,7 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/usuario")
-public class UsuarioController {
+public class UsuarioController implements UsuarioControllerDocs {
 
     private static final Logger logger = LoggerFactory.getLogger(UsuarioController.class);
 

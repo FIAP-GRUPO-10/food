@@ -2,6 +2,7 @@ package br.com.fiap.food.modules.usuario.infrastructure.controller;
 
 import br.com.fiap.food.modules.usuario.application.usecase.tipousuario.*;
 import br.com.fiap.food.modules.usuario.domain.entity.TipoUsuario;
+import br.com.fiap.food.modules.usuario.infrastructure.controller.docs.TipoUsuarioControllerDocs;
 import br.com.fiap.food.modules.usuario.infrastructure.controller.dto.request.TipoUsuarioRequest;
 import br.com.fiap.food.modules.usuario.infrastructure.controller.dto.response.TipoUsuarioResponse;
 import br.com.fiap.food.modules.usuario.infrastructure.controller.mapper.TipoUsuarioApiMapper;
@@ -16,7 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/tipo-usuario")
-public class TipoUsuarioController {
+public class TipoUsuarioController implements TipoUsuarioControllerDocs {
 
     private static final Logger logger = LoggerFactory.getLogger(TipoUsuarioController.class);
 
@@ -73,7 +74,7 @@ public class TipoUsuarioController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<TipoUsuarioResponse> atualizar(@PathVariable Long id, @RequestBody TipoUsuarioRequest request) {
+    public ResponseEntity<TipoUsuarioResponse> atualizar(@PathVariable Long id, @RequestBody @Valid TipoUsuarioRequest request) {
         logger.info("Atualizando TipoUsuario ID: {} com dados: {}", id, request);
         TipoUsuario tipoUsuario = mapper.toDomain(request);
         TipoUsuario atualizado = atualizarTipoUsuarioUseCase.execute(id, tipoUsuario);
