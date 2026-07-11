@@ -4,8 +4,8 @@ import br.com.fiap.food.modules.restaurante.domain.exception.HorarioInvalidoExce
 import br.com.fiap.food.modules.restaurante.domain.exception.RestauranteDuplicadoException;
 import br.com.fiap.food.modules.restaurante.domain.exception.RestauranteNaoEncontradoException;
 import br.com.fiap.food.modules.restaurante.domain.exception.RestauranteSemDonoException;
-import br.com.fiap.food.modules.usuario.domain.exception.TipoUsuarioJaCadastradoException;
-import br.com.fiap.food.modules.usuario.domain.exception.TipoUsuarioNaoEncontradoException;
+import br.com.fiap.food.modules.tipousuario.domain.exception.TipoUsuarioJaCadastradoException;
+import br.com.fiap.food.modules.tipousuario.domain.exception.TipoUsuarioNaoEncontradoException;
 import br.com.fiap.food.modules.usuario.domain.exception.UsuarioNaoEncontradoException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;

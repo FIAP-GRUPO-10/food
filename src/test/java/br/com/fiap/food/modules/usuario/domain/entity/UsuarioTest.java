@@ -1,5 +1,6 @@
 package br.com.fiap.food.modules.usuario.domain.entity;
 
+import br.com.fiap.food.modules.tipousuario.domain.entity.TipoUsuario;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

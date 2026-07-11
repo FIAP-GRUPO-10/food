@@ -1,6 +1,6 @@
 package br.com.fiap.food.modules.restaurante.infrastructure.persistence.entity;
 
-import br.com.fiap.food.modules.usuario.infrastructure.persistence.entity.TipoUsuarioEntity;
+import br.com.fiap.food.modules.tipousuario.infrastructure.persistence.entity.TipoUsuarioEntity;
 import br.com.fiap.food.modules.usuario.infrastructure.persistence.entity.UsuarioEntity;
 import org.junit.jupiter.api.Test;
 

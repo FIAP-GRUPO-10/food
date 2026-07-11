@@ -2,7 +2,7 @@ package br.com.fiap.food.modules.restaurante.domain.entity;
 
 import br.com.fiap.food.modules.restaurante.domain.exception.HorarioInvalidoException;
 import br.com.fiap.food.modules.restaurante.domain.exception.RestauranteSemDonoException;
-import br.com.fiap.food.modules.usuario.domain.entity.TipoUsuario;
+import br.com.fiap.food.modules.tipousuario.domain.entity.TipoUsuario;
 import br.com.fiap.food.modules.usuario.domain.entity.Usuario;
 
 import org.junit.jupiter.api.Test;
