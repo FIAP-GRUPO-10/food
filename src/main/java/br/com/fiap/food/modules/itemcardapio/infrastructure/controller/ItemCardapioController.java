@@ -34,7 +34,7 @@ public class ItemCardapioController {
     }
 
     @PostMapping
-    public ResponseEntity<ItemCardapioResponse> criarRestaurante(@RequestBody ItemCardapioRequest request) {
+    public ResponseEntity<ItemCardapioResponse> criarItemCardapio(@RequestBody ItemCardapioRequest request) {
         ItemCardapio itemCardapio = mapper.toDomain(request);
         ItemCardapio criado = criarItemCardapioUseCase.execute(itemCardapio);
         ItemCardapioResponse response = mapper.toResponse(criado);

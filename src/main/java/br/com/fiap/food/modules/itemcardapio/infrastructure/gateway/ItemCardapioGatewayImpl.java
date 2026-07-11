@@ -33,13 +33,17 @@ public class ItemCardapioGatewayImpl implements ItemCardapioGateway {
         return repository.findById(id).map(mapper::toDomain);
     }
 
+    public List<ItemCardapio> buscarPorRestauranteId(Long restauranteId) {
+        return repository.findByRestauranteId(restauranteId).stream().map(mapper::toDomain).toList();
+    }
+
     @Override
     public List<ItemCardapio> listarTodos() {
-        return List.of();
+        return repository.findAll().stream().map(mapper::toDomain).toList();
     }
 
     @Override
     public void deletar(Long id) {
-
+        repository.deleteById(id);
     }
 }
