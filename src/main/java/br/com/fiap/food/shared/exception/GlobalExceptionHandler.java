@@ -106,7 +106,7 @@ public class GlobalExceptionHandler {
     ) {
         return StandardError.create(
                 HttpStatus.BAD_REQUEST,
-                "Restaurante sem dono",
+                "Restaurante duplicado",
                 ex.getMessage(),
                 request.getRequestURI()
         );
