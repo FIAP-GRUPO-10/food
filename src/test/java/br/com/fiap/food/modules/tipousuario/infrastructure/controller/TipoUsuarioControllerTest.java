@@ -5,6 +5,7 @@ import br.com.fiap.food.modules.tipousuario.domain.entity.TipoUsuario;
 import br.com.fiap.food.modules.tipousuario.infrastructure.controller.dto.request.TipoUsuarioRequest;
 import br.com.fiap.food.modules.tipousuario.infrastructure.controller.dto.response.TipoUsuarioResponse;
 import br.com.fiap.food.modules.tipousuario.infrastructure.controller.mapper.TipoUsuarioApiMapper;
+import br.com.fiap.food.modules.usuario.application.usecase.AtualizarTipoUsuarioDoUsuarioUseCase;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

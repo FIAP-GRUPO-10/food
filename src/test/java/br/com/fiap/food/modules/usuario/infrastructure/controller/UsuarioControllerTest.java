@@ -35,6 +35,7 @@ class UsuarioControllerTest {
     @MockitoBean private ListarUsuariosUseCase listarUsuariosUseCase;
     @MockitoBean private AtualizarUsuarioUseCase atualizarUsuarioUseCase;
     @MockitoBean private DeletarUsuarioUseCase deletarUsuarioUseCase;
+    @MockitoBean private AtualizarTipoUsuarioDoUsuarioUseCase atualizarTipoUsuarioDoUsuarioUseCase;
 
     private TipoUsuario buildTipoUsuario() {
         return new TipoUsuario(10L, "ADMIN", "Administrador do sistema");

@@ -6,9 +6,10 @@ import br.com.fiap.food.modules.itemcardapio.infrastructure.persistence.mapper.I
 import br.com.fiap.food.modules.restaurante.domain.entity.Restaurante;
 import br.com.fiap.food.modules.restaurante.infrastructure.persistence.entity.RestauranteEntity;
 import br.com.fiap.food.modules.restaurante.infrastructure.persistence.mapper.RestauranteEntityMapper;
-import br.com.fiap.food.modules.usuario.domain.entity.TipoUsuario;
+import br.com.fiap.food.modules.tipousuario.domain.entity.TipoUsuario;
+import br.com.fiap.food.modules.tipousuario.infrastructure.persistence.entity.TipoUsuarioEntity;
+import br.com.fiap.food.modules.tipousuario.infrastructure.persistence.mapper.TipoUsuarioEntityMapper;
 import br.com.fiap.food.modules.usuario.domain.entity.Usuario;
-import br.com.fiap.food.modules.usuario.infrastructure.persistence.entity.TipoUsuarioEntity;
 import br.com.fiap.food.modules.usuario.infrastructure.persistence.entity.UsuarioEntity;
 import br.com.fiap.food.modules.usuario.infrastructure.persistence.mapper.UsuarioEntityMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,23 +28,13 @@ class ItemCardapioEntityMapperTest {
 
     @BeforeEach
     void setUp() {
-        UsuarioEntityMapper usuarioEntityMapper =
-                Mappers.getMapper(UsuarioEntityMapper.class);
 
-        RestauranteEntityMapper restauranteEntityMapper =
-                Mappers.getMapper(RestauranteEntityMapper.class);
-
-        ReflectionTestUtils.setField(
-                restauranteEntityMapper,
-                "usuarioEntityMapper",
-                usuarioEntityMapper
-        );
-
-        ReflectionTestUtils.setField(
-                mapper,
-                "restauranteEntityMapper",
-                restauranteEntityMapper
-        );
+        TipoUsuarioEntityMapper tipoUsuarioEntityMapper = Mappers.getMapper(TipoUsuarioEntityMapper.class);
+        UsuarioEntityMapper usuarioEntityMapper = Mappers.getMapper(UsuarioEntityMapper.class);
+        RestauranteEntityMapper restauranteEntityMapper = Mappers.getMapper(RestauranteEntityMapper.class);
+        ReflectionTestUtils.setField(usuarioEntityMapper, "tipoUsuarioEntityMapper", tipoUsuarioEntityMapper);
+        ReflectionTestUtils.setField(restauranteEntityMapper, "usuarioEntityMapper", usuarioEntityMapper);
+        ReflectionTestUtils.setField(mapper, "restauranteEntityMapper", restauranteEntityMapper);
     }
 
     @Test
