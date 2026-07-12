@@ -1,7 +1,7 @@
 package br.com.fiap.food.modules.usuario.infrastructure.controller.mapper;
 
 import br.com.fiap.food.modules.usuario.domain.entity.Usuario;
-import br.com.fiap.food.modules.usuario.domain.entity.TipoUsuario;
+import br.com.fiap.food.modules.tipousuario.domain.entity.TipoUsuario;
 import br.com.fiap.food.modules.usuario.infrastructure.controller.dto.request.UsuarioRequest;
 import br.com.fiap.food.modules.usuario.infrastructure.controller.dto.response.UsuarioResponse;
 import org.mapstruct.Mapper;

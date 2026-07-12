@@ -1,5 +1,6 @@
 package br.com.fiap.food.modules.usuario.infrastructure.controller.docs;
 
+import br.com.fiap.food.modules.usuario.infrastructure.controller.dto.request.TipoUsuarioDoUsuarioRequest;
 import br.com.fiap.food.modules.usuario.infrastructure.controller.dto.request.UsuarioRequest;
 import br.com.fiap.food.modules.usuario.infrastructure.controller.dto.response.UsuarioResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -50,6 +51,17 @@ public interface UsuarioControllerDocs {
     ResponseEntity<UsuarioResponse> atualizarUsuario(
             @Parameter(description = "ID do usuário", example = "1") Long id,
             @Valid UsuarioRequest request
+    );
+
+    @Operation(summary = "Atualizar tipo do usuário", description = "Atualiza o tipo de usuário de um usuário existente")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Usuário atualizado com sucesso", content = @Content(schema = @Schema(implementation = UsuarioResponse.class))),
+            @ApiResponse(responseCode = "400", description = "Dados inválidos"),
+            @ApiResponse(responseCode = "404", description = "Usuário ou tipo do usuário não encontrado")
+    })
+    ResponseEntity<UsuarioResponse> atualizarTipoDoUsuario(
+            @Parameter(description = "ID do usuário", example = "1") Long id,
+            @Valid TipoUsuarioDoUsuarioRequest request
     );
 
     @Operation(summary = "Excluir usuário", description = "Remove um usuário pelo seu identificador")

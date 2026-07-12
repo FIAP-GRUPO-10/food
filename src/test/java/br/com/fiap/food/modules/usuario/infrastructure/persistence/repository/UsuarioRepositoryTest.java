@@ -1,6 +1,7 @@
 package br.com.fiap.food.modules.usuario.infrastructure.persistence.repository;
 
-import br.com.fiap.food.modules.usuario.infrastructure.persistence.entity.TipoUsuarioEntity;
+import br.com.fiap.food.modules.tipousuario.infrastructure.persistence.entity.TipoUsuarioEntity;
+import br.com.fiap.food.modules.tipousuario.infrastructure.persistence.repository.TipoUsuarioRepository;
 import br.com.fiap.food.modules.usuario.infrastructure.persistence.entity.UsuarioEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

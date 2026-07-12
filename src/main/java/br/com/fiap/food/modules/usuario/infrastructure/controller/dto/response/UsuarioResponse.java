@@ -1,6 +1,6 @@
 package br.com.fiap.food.modules.usuario.infrastructure.controller.dto.response;
 
-import br.com.fiap.food.modules.usuario.domain.entity.TipoUsuario;
+import br.com.fiap.food.modules.tipousuario.domain.entity.TipoUsuario;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 public record UsuarioResponse(

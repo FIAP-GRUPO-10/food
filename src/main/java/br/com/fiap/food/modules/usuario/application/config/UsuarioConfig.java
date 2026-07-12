@@ -1,6 +1,8 @@
 package br.com.fiap.food.modules.usuario.application.config;
 
-import br.com.fiap.food.modules.usuario.application.usecase.usuario.*;
+import br.com.fiap.food.modules.tipousuario.domain.entity.TipoUsuario;
+import br.com.fiap.food.modules.tipousuario.domain.gateway.TipoUsuarioGateway;
+import br.com.fiap.food.modules.usuario.application.usecase.*;
 import br.com.fiap.food.modules.usuario.domain.gateway.UsuarioGateway;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,8 +21,8 @@ public class UsuarioConfig {
     }
 
     @Bean
-    public AtualizarUsuarioUseCase atualizarUsuarioUseCase(UsuarioGateway gateway) {
-        return new AtualizarUsuarioUseCase(gateway);
+    public AtualizarUsuarioUseCase atualizarUsuarioUseCase(UsuarioGateway usuarioGateway, TipoUsuarioGateway tipoUsuarioGateway) {
+        return new AtualizarUsuarioUseCase(usuarioGateway, tipoUsuarioGateway);
     }
 
     @Bean
@@ -31,6 +33,11 @@ public class UsuarioConfig {
     @Bean
     public DeletarUsuarioUseCase deletarUsuarioUseCase(UsuarioGateway gateway) {
         return new DeletarUsuarioUseCase(gateway);
+    }
+
+    @Bean
+    public AtualizarTipoUsuarioDoUsuarioUseCase atualizarTipoUsuarioDoUsuarioUseCase(UsuarioGateway usuarioGateway, TipoUsuarioGateway tipoUsuarioGateway) {
+        return new AtualizarTipoUsuarioDoUsuarioUseCase(usuarioGateway, tipoUsuarioGateway);
     }
 
 }

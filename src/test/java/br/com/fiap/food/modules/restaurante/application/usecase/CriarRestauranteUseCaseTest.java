@@ -3,7 +3,7 @@ package br.com.fiap.food.modules.restaurante.application.usecase;
 import br.com.fiap.food.modules.restaurante.domain.entity.Restaurante;
 import br.com.fiap.food.modules.restaurante.domain.exception.RestauranteDuplicadoException;
 import br.com.fiap.food.modules.restaurante.domain.gateway.RestauranteGateway;
-import br.com.fiap.food.modules.usuario.domain.entity.TipoUsuario;
+import br.com.fiap.food.modules.tipousuario.domain.entity.TipoUsuario;
 import br.com.fiap.food.modules.usuario.domain.entity.Usuario;
 import br.com.fiap.food.modules.usuario.domain.gateway.UsuarioGateway;
 import org.junit.jupiter.api.Test;

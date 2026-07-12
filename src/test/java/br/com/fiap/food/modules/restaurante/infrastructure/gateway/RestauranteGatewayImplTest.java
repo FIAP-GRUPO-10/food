@@ -1,11 +1,10 @@
 package br.com.fiap.food.modules.restaurante.infrastructure.gateway;
 
 import br.com.fiap.food.modules.restaurante.domain.entity.Restaurante;
-import br.com.fiap.food.modules.restaurante.domain.exception.RestauranteNaoEncontradoException;
 import br.com.fiap.food.modules.restaurante.infrastructure.persistence.entity.RestauranteEntity;
 import br.com.fiap.food.modules.restaurante.infrastructure.persistence.mapper.RestauranteEntityMapper;
 import br.com.fiap.food.modules.restaurante.infrastructure.persistence.repository.RestauranteRepository;
-import br.com.fiap.food.modules.usuario.domain.entity.TipoUsuario;
+import br.com.fiap.food.modules.tipousuario.domain.entity.TipoUsuario;
 import br.com.fiap.food.modules.usuario.domain.entity.Usuario;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

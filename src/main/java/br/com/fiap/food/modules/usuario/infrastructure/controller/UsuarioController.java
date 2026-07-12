@@ -1,8 +1,9 @@
 package br.com.fiap.food.modules.usuario.infrastructure.controller;
 
-import br.com.fiap.food.modules.usuario.application.usecase.usuario.*;
+import br.com.fiap.food.modules.usuario.application.usecase.*;
 import br.com.fiap.food.modules.usuario.domain.entity.Usuario;
 import br.com.fiap.food.modules.usuario.infrastructure.controller.docs.UsuarioControllerDocs;
+import br.com.fiap.food.modules.usuario.infrastructure.controller.dto.request.TipoUsuarioDoUsuarioRequest;
 import br.com.fiap.food.modules.usuario.infrastructure.controller.dto.request.UsuarioRequest;
 import br.com.fiap.food.modules.usuario.infrastructure.controller.dto.response.UsuarioResponse;
 import br.com.fiap.food.modules.usuario.infrastructure.controller.mapper.UsuarioApiMapper;
@@ -27,19 +28,21 @@ public class UsuarioController implements UsuarioControllerDocs {
     private final ListarUsuariosUseCase listarUsuariosUseCase;
     private final AtualizarUsuarioUseCase atualizarUsuarioUseCase;
     private final DeletarUsuarioUseCase deletarUsuarioUseCase;
+    private final AtualizarTipoUsuarioDoUsuarioUseCase atualizarTipoUsuarioDoUsuarioUseCase;
 
     public UsuarioController(UsuarioApiMapper mapper,
                              CriarUsuarioUseCase criarUsuarioUseCase,
                              BuscarUsuarioPorIdUseCase buscarUsuarioPorIdUseCase,
                              ListarUsuariosUseCase listarUsuariosUseCase,
                              AtualizarUsuarioUseCase atualizarUsuarioUseCase,
-                             DeletarUsuarioUseCase deletarUsuarioUseCase) {
+                             DeletarUsuarioUseCase deletarUsuarioUseCase, AtualizarTipoUsuarioDoUsuarioUseCase atualizarTipoUsuarioDoUsuarioUseCase) {
         this.mapper = mapper;
         this.criarUsuarioUseCase = criarUsuarioUseCase;
         this.buscarUsuarioPorIdUseCase = buscarUsuarioPorIdUseCase;
         this.listarUsuariosUseCase = listarUsuariosUseCase;
         this.atualizarUsuarioUseCase = atualizarUsuarioUseCase;
         this.deletarUsuarioUseCase = deletarUsuarioUseCase;
+        this.atualizarTipoUsuarioDoUsuarioUseCase = atualizarTipoUsuarioDoUsuarioUseCase;
     }
 
     @PostMapping
@@ -78,6 +81,16 @@ public class UsuarioController implements UsuarioControllerDocs {
         logger.info("Atualizando usuário ID: {} com dados: {}", id, request);
         Usuario usuario = mapper.toDomain(request);
         Usuario atualizado = atualizarUsuarioUseCase.execute(id, usuario);
+        logger.info("Usuário atualizado: {}", atualizado);
+        UsuarioResponse response = mapper.toResponse(atualizado);
+        return ResponseEntity.ok(response);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<UsuarioResponse> atualizarTipoDoUsuario(@PathVariable Long id,
+                                                            @RequestBody TipoUsuarioDoUsuarioRequest request) {
+        logger.info("Atualizando usuário ID: {} com novo tipo ID: {}", id, request.tipoUsuarioId());
+        Usuario atualizado = atualizarTipoUsuarioDoUsuarioUseCase.execute(id, request.tipoUsuarioId());
         logger.info("Usuário atualizado: {}", atualizado);
         UsuarioResponse response = mapper.toResponse(atualizado);
         return ResponseEntity.ok(response);
