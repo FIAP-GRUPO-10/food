@@ -1,7 +1,6 @@
-package br.com.fiap.food.modules.itemCardapio.infraestructure.gateway;
+package br.com.fiap.food.modules.itemcardapio.infrastructure.gateway;
 
 import br.com.fiap.food.modules.itemcardapio.domain.entity.ItemCardapio;
-import br.com.fiap.food.modules.itemcardapio.infrastructure.gateway.ItemCardapioGatewayImpl;
 import br.com.fiap.food.modules.itemcardapio.infrastructure.persistence.entity.ItemCardapioEntity;
 import br.com.fiap.food.modules.itemcardapio.infrastructure.persistence.mapper.ItemCardapioEntityMapper;
 import br.com.fiap.food.modules.itemcardapio.infrastructure.persistence.repository.ItemCardapioRepository;

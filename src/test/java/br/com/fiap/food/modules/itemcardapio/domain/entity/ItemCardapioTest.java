@@ -1,7 +1,6 @@
 
-package br.com.fiap.food.modules.itemCardapio.domain.entity;
+package br.com.fiap.food.modules.itemcardapio.domain.entity;
 
-import br.com.fiap.food.modules.itemcardapio.domain.entity.ItemCardapio;
 import br.com.fiap.food.modules.itemcardapio.domain.exception.ItemCardapioInvalidoException;
 import br.com.fiap.food.modules.itemcardapio.domain.exception.ItemCardapioSemRestauranteException;
 import br.com.fiap.food.modules.restaurante.domain.entity.Restaurante;

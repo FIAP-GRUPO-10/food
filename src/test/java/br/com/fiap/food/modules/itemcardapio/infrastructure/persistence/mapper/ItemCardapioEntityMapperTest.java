@@ -1,8 +1,7 @@
-package br.com.fiap.food.modules.itemCardapio.infraestructure.persistence.mapper;
+package br.com.fiap.food.modules.itemcardapio.infrastructure.persistence.mapper;
 import br.com.fiap.food.modules.itemcardapio.domain.entity.ItemCardapio;
 import br.com.fiap.food.modules.itemcardapio.domain.exception.ItemCardapioSemRestauranteException;
 import br.com.fiap.food.modules.itemcardapio.infrastructure.persistence.entity.ItemCardapioEntity;
-import br.com.fiap.food.modules.itemcardapio.infrastructure.persistence.mapper.ItemCardapioEntityMapper;
 import br.com.fiap.food.modules.restaurante.domain.entity.Restaurante;
 import br.com.fiap.food.modules.restaurante.infrastructure.persistence.entity.RestauranteEntity;
 import br.com.fiap.food.modules.restaurante.infrastructure.persistence.mapper.RestauranteEntityMapper;

@@ -1,5 +1,4 @@
-package br.com.fiap.food.modules.itemCardapio.application.usecase;
-import br.com.fiap.food.modules.itemcardapio.application.usecase.AtualizarItemUseCase;
+package br.com.fiap.food.modules.itemcardapio.application.usecase;
 import br.com.fiap.food.modules.itemcardapio.domain.entity.ItemCardapio;
 import br.com.fiap.food.modules.itemcardapio.domain.exception.ItemCardapioNaoEncontradoException;
 import br.com.fiap.food.modules.itemcardapio.domain.gateway.ItemCardapioGateway;

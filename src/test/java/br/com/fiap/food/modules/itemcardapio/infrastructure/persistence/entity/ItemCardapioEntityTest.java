@@ -1,5 +1,4 @@
-package br.com.fiap.food.modules.itemCardapio.infraestructure.persistence.entity;
-import br.com.fiap.food.modules.itemcardapio.infrastructure.persistence.entity.ItemCardapioEntity;
+package br.com.fiap.food.modules.itemcardapio.infrastructure.persistence.entity;
 import br.com.fiap.food.modules.restaurante.infrastructure.persistence.entity.RestauranteEntity;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

@@ -464,6 +464,128 @@
           "response": []
         }
       ]
+    },
+    {
+      "name": "ITEM CARDAPIO",
+      "item": [
+        {
+          "name": "CRIAR",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Pizza Portuguesa\",\n  \"descricao\": \"Pizza com presunto, ovos e cebola\",\n  \"preco\": 49.90,\n  \"somenteNoLocal\": false,\n  \"caminhoFoto\": \"/img/pizza.png\",\n  \"restauranteId\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/item-cardapio",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "item-cardapio"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ATUALIZAR",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Pizza Portuguesa Especial\",\n  \"descricao\": \"Agora com mais queijo\",\n  \"preco\": 59.90,\n  \"somenteNoLocal\": true,\n  \"caminhoFoto\": \"/img/pizza-especial.png\",\n  \"restauranteId\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/item-cardapio/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "item-cardapio",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "BUSCAR ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/item-cardapio/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "item-cardapio",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETAR",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/item-cardapio/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "item-cardapio",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
     }
   ]
 }
