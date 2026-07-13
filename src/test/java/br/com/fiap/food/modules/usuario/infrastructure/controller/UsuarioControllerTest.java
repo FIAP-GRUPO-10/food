@@ -1,7 +1,7 @@
 package br.com.fiap.food.modules.usuario.infrastructure.controller;
 
-import br.com.fiap.food.modules.usuario.application.usecase.usuario.*;
-import br.com.fiap.food.modules.usuario.domain.entity.TipoUsuario;
+import br.com.fiap.food.modules.usuario.application.usecase.*;
+import br.com.fiap.food.modules.tipousuario.domain.entity.TipoUsuario;
 import br.com.fiap.food.modules.usuario.domain.entity.Usuario;
 import br.com.fiap.food.modules.usuario.infrastructure.controller.dto.request.UsuarioRequest;
 import br.com.fiap.food.modules.usuario.infrastructure.controller.dto.response.UsuarioResponse;
@@ -35,6 +35,7 @@ class UsuarioControllerTest {
     @MockitoBean private ListarUsuariosUseCase listarUsuariosUseCase;
     @MockitoBean private AtualizarUsuarioUseCase atualizarUsuarioUseCase;
     @MockitoBean private DeletarUsuarioUseCase deletarUsuarioUseCase;
+    @MockitoBean private AtualizarTipoUsuarioDoUsuarioUseCase atualizarTipoUsuarioDoUsuarioUseCase;
 
     private TipoUsuario buildTipoUsuario() {
         return new TipoUsuario(10L, "ADMIN", "Administrador do sistema");

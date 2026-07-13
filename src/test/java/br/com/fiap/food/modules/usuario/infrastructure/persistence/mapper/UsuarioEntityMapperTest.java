@@ -1,8 +1,8 @@
 package br.com.fiap.food.modules.usuario.infrastructure.persistence.mapper;
 
-import br.com.fiap.food.modules.usuario.domain.entity.TipoUsuario;
+import br.com.fiap.food.modules.tipousuario.domain.entity.TipoUsuario;
 import br.com.fiap.food.modules.usuario.domain.entity.Usuario;
-import br.com.fiap.food.modules.usuario.infrastructure.persistence.entity.TipoUsuarioEntity;
+import br.com.fiap.food.modules.tipousuario.infrastructure.persistence.entity.TipoUsuarioEntity;
 import br.com.fiap.food.modules.usuario.infrastructure.persistence.entity.UsuarioEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -2,9 +2,9 @@ package br.com.fiap.food.modules.itemcardapio.infrastructure.persistence.reposit
 import br.com.fiap.food.modules.itemcardapio.infrastructure.persistence.entity.ItemCardapioEntity;
 import br.com.fiap.food.modules.restaurante.infrastructure.persistence.entity.RestauranteEntity;
 import br.com.fiap.food.modules.restaurante.infrastructure.persistence.repository.RestauranteRepository;
-import br.com.fiap.food.modules.usuario.infrastructure.persistence.entity.TipoUsuarioEntity;
+import br.com.fiap.food.modules.tipousuario.infrastructure.persistence.entity.TipoUsuarioEntity;
+import br.com.fiap.food.modules.tipousuario.infrastructure.persistence.repository.TipoUsuarioRepository;
 import br.com.fiap.food.modules.usuario.infrastructure.persistence.entity.UsuarioEntity;
-import br.com.fiap.food.modules.usuario.infrastructure.persistence.repository.TipoUsuarioRepository;
 import br.com.fiap.food.modules.usuario.infrastructure.persistence.repository.UsuarioRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

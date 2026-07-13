@@ -5,7 +5,7 @@ import br.com.fiap.food.modules.restaurante.domain.entity.Restaurante;
 import br.com.fiap.food.modules.restaurante.infrastructure.controller.dto.request.RestauranteRequest;
 import br.com.fiap.food.modules.restaurante.infrastructure.controller.dto.response.RestauranteResponse;
 import br.com.fiap.food.modules.restaurante.infrastructure.controller.mapper.RestauranteApiMapper;
-import br.com.fiap.food.modules.usuario.domain.entity.TipoUsuario;
+import br.com.fiap.food.modules.tipousuario.domain.entity.TipoUsuario;
 import br.com.fiap.food.modules.usuario.domain.entity.Usuario;
 import br.com.fiap.food.modules.usuario.infrastructure.controller.dto.response.UsuarioResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -3,7 +3,7 @@ package br.com.fiap.food.modules.restaurante.infrastructure.controller.mapper;
 import br.com.fiap.food.modules.restaurante.domain.entity.Restaurante;
 import br.com.fiap.food.modules.restaurante.infrastructure.controller.dto.request.RestauranteRequest;
 import br.com.fiap.food.modules.restaurante.infrastructure.controller.dto.response.RestauranteResponse;
-import br.com.fiap.food.modules.usuario.domain.entity.TipoUsuario;
+import br.com.fiap.food.modules.tipousuario.domain.entity.TipoUsuario;
 import br.com.fiap.food.modules.usuario.domain.entity.Usuario;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;

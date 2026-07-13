@@ -1,5 +1,6 @@
 package br.com.fiap.food.modules.usuario.infrastructure.persistence.entity;
 
+import br.com.fiap.food.modules.tipousuario.infrastructure.persistence.entity.TipoUsuarioEntity;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
