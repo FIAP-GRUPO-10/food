@@ -1,6 +1,5 @@
-package br.com.fiap.food.modules.itemCardapio.application.usecase;
+package br.com.fiap.food.modules.itemcardapio.application.usecase;
 
-import br.com.fiap.food.modules.itemcardapio.application.usecase.CriarItemCardapioUseCase;
 import br.com.fiap.food.modules.itemcardapio.domain.entity.ItemCardapio;
 import br.com.fiap.food.modules.itemcardapio.domain.gateway.ItemCardapioGateway;
 import br.com.fiap.food.modules.restaurante.domain.entity.Restaurante;

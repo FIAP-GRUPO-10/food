@@ -1,6 +1,5 @@
-package br.com.fiap.food.modules.itemCardapio.infraestructure.persistence.repository;
+package br.com.fiap.food.modules.itemcardapio.infrastructure.persistence.repository;
 import br.com.fiap.food.modules.itemcardapio.infrastructure.persistence.entity.ItemCardapioEntity;
-import br.com.fiap.food.modules.itemcardapio.infrastructure.persistence.repository.ItemCardapioRepository;
 import br.com.fiap.food.modules.restaurante.infrastructure.persistence.entity.RestauranteEntity;
 import br.com.fiap.food.modules.restaurante.infrastructure.persistence.repository.RestauranteRepository;
 import br.com.fiap.food.modules.tipousuario.infrastructure.persistence.entity.TipoUsuarioEntity;
