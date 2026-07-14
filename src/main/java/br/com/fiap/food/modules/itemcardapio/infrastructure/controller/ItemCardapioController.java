@@ -3,18 +3,20 @@ package br.com.fiap.food.modules.itemcardapio.infrastructure.controller;
 import br.com.fiap.food.modules.itemcardapio.application.usecase.AtualizarItemUseCase;
 import br.com.fiap.food.modules.itemcardapio.application.usecase.DeletarItemCardapioUseCase;
 import br.com.fiap.food.modules.itemcardapio.domain.entity.ItemCardapio;
+import br.com.fiap.food.modules.itemcardapio.infrastructure.controller.docs.ItemCardapioControllerDocs;
 import br.com.fiap.food.modules.itemcardapio.infrastructure.controller.dto.request.ItemCardapioRequest;
 import br.com.fiap.food.modules.itemcardapio.infrastructure.controller.dto.response.ItemCardapioResponse;
 import br.com.fiap.food.modules.itemcardapio.infrastructure.controller.mapper.ItemCardapioApiMapper;
 import br.com.fiap.food.modules.itemcardapio.application.usecase.BuscarItemCardapioPorIdUseCase;
 import br.com.fiap.food.modules.itemcardapio.application.usecase.CriarItemCardapioUseCase;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/item-cardapio")
-public class ItemCardapioController {
+public class ItemCardapioController implements ItemCardapioControllerDocs {
 
     private final ItemCardapioApiMapper mapper;
     private final CriarItemCardapioUseCase criarItemCardapioUseCase;
@@ -44,7 +46,7 @@ public class ItemCardapioController {
     }
 
     @PostMapping
-    public ResponseEntity<ItemCardapioResponse> criarItemCardapio(@RequestBody ItemCardapioRequest request) {
+    public ResponseEntity<ItemCardapioResponse> criarItemCardapio(@RequestBody @Valid ItemCardapioRequest request) {
         ItemCardapio itemCardapio = mapper.toDomain(request);
         ItemCardapio criado = criarItemCardapioUseCase.execute(itemCardapio);
         ItemCardapioResponse response = mapper.toResponse(criado);
@@ -55,7 +57,7 @@ public class ItemCardapioController {
     @PutMapping("/{id}")
     public ResponseEntity<ItemCardapioResponse> atualizarItemCardapio(
             @PathVariable Long id,
-            @RequestBody ItemCardapioRequest request
+            @RequestBody @Valid ItemCardapioRequest request
     ) {
         ItemCardapio itemCardapio = mapper.toDomain(request);
 

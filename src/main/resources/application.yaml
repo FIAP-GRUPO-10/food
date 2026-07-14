@@ -3,4 +3,4 @@ spring:
     name: food
   profiles:
     # local / docker - quiser utilizar H2 local trocar para local
-    active: local
+    active: docker

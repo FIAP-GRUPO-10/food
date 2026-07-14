@@ -1,33 +1,141 @@
-# Tech Challenge Backend API - Fase 2
-
 # 🍽️ Sistema de Gestão de Restaurantes
 
 ## 📌 Sobre o Projeto
-Este projeto foi desenvolvido como parte do **Tech Challenge - Fase 2** da pós-graduação em Arquitetura e Desenvolvimento Java.  
-O objetivo é criar um sistema compartilhado de gestão para restaurantes, permitindo que clientes consultem informações, façam pedidos e deixem avaliações, enquanto os donos de restaurantes gerenciam suas operações.
+
+Este projeto foi desenvolvido como parte do **Tech Challenge – Fase 2** da pós-graduação em **Arquitetura e Desenvolvimento Java** da FIAP.
+
+O desafio propõe o desenvolvimento de uma **API REST** para um sistema compartilhado de gestão de restaurantes. A ideia é permitir que diversos estabelecimentos utilizem uma única plataforma para administrar suas operações, reduzindo custos de desenvolvimento e manutenção de sistemas individuais.
+
+Nesta segunda fase, o sistema foi expandido para contemplar o gerenciamento dos principais cadastros necessários para a operação dos restaurantes, utilizando boas práticas de desenvolvimento com **Java**, **Spring Boot** e **Clean Architecture**.
+
+Além das funcionalidades de negócio, o projeto também prioriza aspectos como organização do código, documentação da API, testes automatizados e execução da aplicação em ambiente containerizado com Docker.
+
+---
+
+## 🎯 Objetivos da Fase 2
+
+Nesta etapa foram implementadas as seguintes funcionalidades:
+
+- Gerenciamento de **Tipos de Usuário**, permitindo diferenciar **Clientes** e **Donos de Restaurante**.
+- Cadastro completo de **Restaurantes**, vinculando cada estabelecimento ao seu respectivo proprietário.
+- Cadastro e gerenciamento dos **Itens do Cardápio**, contendo informações como descrição, preço, disponibilidade e caminho da imagem do prato.
+
+Além das funcionalidades, o projeto atende aos requisitos técnicos da fase:
+
+- Arquitetura baseada em **Clean Architecture**.
+- API documentada com **OpenAPI/Swagger**.
+- Testes automatizados.
+- Containerização utilizando **Docker** e **Docker Compose**.
+- Disponibilização de Collection para testes da API.
+- Código organizado seguindo boas práticas de desenvolvimento com Spring Boot.
 
 ---
 
 ## 🚀 Funcionalidades Implementadas
-- **Cadastro de Tipo de Usuário**
-    - CRUD para distinguir entre **Dono de Restaurante** e **Cliente**.
-    - Associação de usuários ao tipo de usuário.
 
-- **Cadastro de Restaurante**
-    - CRUD completo com campos: nome, endereço, tipo de cozinha, horário de funcionamento e dono do restaurante.
+### 👤 Cadastro de Tipo de Usuário
 
-- **Cadastro de Itens do Cardápio**
-    - CRUD para itens vendidos no restaurante.
-    - Campos: nome, descrição, preço, disponibilidade e caminho da foto.
+- CRUD completo de tipos de usuário.
+- Diferenciação entre **Cliente** e **Dono de Restaurante**.
+- Associação de usuários aos respectivos tipos.
+
+### 🏪 Cadastro de Restaurantes
+
+- CRUD completo de restaurantes.
+- Cadastro de:
+  - Nome;
+  - Endereço;
+  - Tipo de cozinha;
+  - Horário de funcionamento;
+  - Dono do restaurante.
+
+### 🍔 Cadastro de Itens do Cardápio
+
+- CRUD completo dos itens do cardápio.
+- Cadastro de:
+  - Nome;
+  - Descrição;
+  - Preço;
+  - Disponibilidade;
+  - Caminho da imagem do prato.
 
 ---
 
 ## 🏗️ Arquitetura
-O projeto segue os princípios de **Clean Architecture**, garantindo separação de responsabilidades e escalabilidade:
 
-- **Domain** → Regras de negócio e entidades.
-- **Application** → Casos de uso e lógica de aplicação.
-- **Infrastructure** → Persistência, controllers e integração com frameworks.
+O projeto foi desenvolvido seguindo os princípios da **Clean Architecture**, separando as responsabilidades em camadas independentes. Essa abordagem mantém as regras de negócio desacopladas dos detalhes de implementação, facilitando a manutenção, os testes e a evolução da aplicação.
+
+As dependências seguem a regra da Clean Architecture: **as camadas externas dependem das internas**, enquanto o núcleo da aplicação permanece independente de frameworks, banco de dados e outras tecnologias.
+
+```text
+Módulo
+├── application
+│   ├── config
+│   └── usecase
+├── domain
+│   ├── entity
+│   ├── exception
+│   └── gateway
+└── infrastructure
+    ├── controller
+    ├── gateway
+    └── persistence
+````
+
+### 📌 Domain
+
+É o núcleo da aplicação, onde estão concentradas as regras de negócio.
+
+* **entity** → Entidades do domínio e seus comportamentos.
+* **exception** → Exceções relacionadas às regras de negócio.
+* **gateway** → Interfaces (contratos) utilizadas pelo domínio para comunicação com recursos externos.
+
+Essa camada **não possui dependência** de frameworks, banco de dados ou qualquer tecnologia específica.
+
+### 📌 Application
+
+Responsável por coordenar os casos de uso da aplicação.
+
+* **usecase** → Implementação dos casos de uso, aplicando as regras de negócio e utilizando os contratos definidos no domínio.
+* **config** → Configurações da camada de aplicação.
+
+A camada de aplicação conhece apenas o domínio e seus contratos, sem depender de detalhes de infraestrutura.
+
+### 📌 Infrastructure
+
+Responsável pelos detalhes de implementação e integração com tecnologias externas.
+
+* **controller** → Endpoints REST responsáveis por receber e responder às requisições HTTP.
+* **gateway** → Implementações dos contratos definidos no domínio.
+* **persistence** → Entidades de persistência, repositórios, mapeamentos e acesso ao banco de dados.
+
+É a única camada que conhece frameworks como Spring Boot, JPA e demais componentes externos.
+
+### 🔄 Fluxo de uma requisição
+
+Uma requisição percorre as camadas na seguinte ordem:
+
+```text
+Controller
+    ↓
+Use Case
+    ↓
+Gateway (Interface - Domain)
+    ↓
+Gateway (Implementação - Infrastructure)
+    ↓
+Persistence (Banco de Dados)
+```
+
+A resposta retorna pelo caminho inverso até o controlador, que envia o resultado ao cliente.
+
+Essa organização proporciona:
+
+* ✅ Baixo acoplamento entre as camadas.
+* ✅ Alta coesão das responsabilidades.
+* ✅ Facilidade para realização de testes unitários.
+* ✅ Independência de frameworks e banco de dados.
+* ✅ Maior facilidade para manutenção e evolução da aplicação.
 
 ---
 
@@ -47,6 +155,7 @@ O projeto segue os princípios de **Clean Architecture**, garantindo separação
 - `POST /api/v1/usuario` → Criar usuário
 - `GET /api/v1/usuario` → Listar usuários
 - `PUT /api/v1/usuario/{id}` → Atualizar usuário
+- `PATCH /api/v1/usuario/{id}` → Atualizar o tipo do usuário de um usuário
 - `DELETE /api/v1/usuario/{id}` → Remover usuário
 
 ### Restaurantes
@@ -77,10 +186,27 @@ O projeto inclui um `docker-compose.yml` para subir:
 
 ```bash
 docker-compose up -d
-``` 
+```
+
+## 📖 Documentação da API (Swagger)
+
+Após iniciar a aplicação, a documentação interativa da API estará disponível pelo **Swagger UI**.
+
+**Acesse em:**
+
+http://localhost:8080/swagger-ui/index.html
+
+> **Observação:** certifique-se de que a aplicação esteja em execução na porta **8080** antes de acessar a documentação.
+
+---
 
 ## 🎥 Vídeo de Demonstração
 
+O vídeo apresenta a execução da aplicação, demonstrando as funcionalidades implementadas nesta fase do projeto:
+
+➡️ [Assistir ao vídeo](https://drive.google.com/file/d/1ZCRvv1lDLGgfXYNC4TQ1BO2sAIgAUBoP/view?usp=drive_link)
+
+---
 
 ## 👨‍💻 Autores
 
