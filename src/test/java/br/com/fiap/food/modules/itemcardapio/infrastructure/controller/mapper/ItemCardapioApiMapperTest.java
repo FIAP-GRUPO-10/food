@@ -4,7 +4,7 @@ import br.com.fiap.food.modules.itemcardapio.domain.entity.ItemCardapio;
 import br.com.fiap.food.modules.itemcardapio.infrastructure.controller.dto.request.ItemCardapioRequest;
 import br.com.fiap.food.modules.itemcardapio.infrastructure.controller.dto.response.ItemCardapioResponse;
 import br.com.fiap.food.modules.restaurante.domain.entity.Restaurante;
-import br.com.fiap.food.modules.usuario.domain.entity.TipoUsuario;
+import br.com.fiap.food.modules.tipousuario.domain.entity.TipoUsuario;
 import br.com.fiap.food.modules.usuario.domain.entity.Usuario;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
